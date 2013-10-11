@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/ComicReeder/ComicReeder.iml" filepath="$PROJECT_DIR$/ComicReeder/ComicReeder.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ComicReederProject.iml" filepath="$PROJECT_DIR$/ComicReederProject.iml" />
+    </modules>
+  </component>
+</project>
+
