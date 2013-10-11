@@ -7,6 +7,24 @@ public class Comic {
 
   private String comicName;
   private String author;
+  private String issueNumber;
+  private String publisher;
+
+  public String getIssueNumber() {
+    return issueNumber;
+  }
+
+  public void setIssueNumber(String issueNumber) {
+    this.issueNumber = issueNumber;
+  }
+
+  public String getPublisher() {
+    return publisher;
+  }
+
+  public void setPublisher(String publisher) {
+    this.publisher = publisher;
+  }
 
   public String getAuthor() {
     return author;
