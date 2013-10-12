@@ -65,15 +65,16 @@
 
   <!-- Description Tag -->
   <TextView
-      android:layout_width="fill_parent"
+      android:layout_width="wrap_content"
       android:layout_height="wrap_content"
 
-      android:layout_alignParentRight="true"
+      android:layout_alignParentLeft="true"
+      android:layout_alignParentBottom="true"
       android:layout_below="@id/middletext"
 
       android:textStyle="bold"
       android:id="@+id/bottomtext"
-      android:singleLine="false"
+      android:singleLine="true"
       />
   <!-- This is the actual description -->
   <TextView
@@ -82,11 +83,11 @@
 
       android:layout_alignParentRight="true"
       android:layout_alignParentBottom="true"
-      android:layout_below="@id/bottomtext"
-
+      android:layout_below="@id/middletext"
+      android:layout_toRightOf="@id/bottomtext"
 
       android:id="@+id/desctext"
-      android:singleLine="false"
+      android:singleLine="true"
       />
 
 </RelativeLayout>
