@@ -27,7 +27,10 @@
         </activity>
         <activity
             android:name="com.mike.comicreeder.ComicListActivity"
-            android:label="@string/title_activity_comic_list" >
+            android:label="@string/title_activity_comic_list"
+            android:parentActivityName="com.mike.comicreeder.ComicReederActivity">
+          <meta-data android:name="android.support.PARENT_ACTIVITY"
+                     android:value="com.mike.comicreeder.ComicReederActivity"/>
         </activity>
     </application>
 
