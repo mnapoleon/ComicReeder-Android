@@ -1,12 +1,19 @@
 package com.mike.comicreeder;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.app.Activity;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.support.v4.app.NavUtils;
 import android.annotation.TargetApi;
 import android.os.Build;
+import android.view.View;
+import android.widget.EditText;
+
+import com.parse.ParseObject;
 
 public class AddComicActivity extends Activity {
 
@@ -18,6 +25,28 @@ public class AddComicActivity extends Activity {
         setupActionBar();
     }
 
+
+    public void addComic(View view) {
+
+      LayoutInflater inflater = (LayoutInflater)view.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+      View formView = inflater.inflate(R.layout.activity_add_comic, null);
+
+      EditText comicNameText = (EditText)formView.findViewById(R.id.comicName);
+      EditText writerText = (EditText)formView.findViewById(R.id.writer);
+      EditText issueNumberText = (EditText)formView.findViewById(R.id.issueNum);
+      EditText publisherText = (EditText)formView.findViewById(R.id.publisher);
+
+      ParseObject comic = new ParseObject("Comic");
+      comic.put("comicName", comicNameText.getText().toString());
+      comic.put("Writer", writerText.getText().toString());
+      comic.put("issue", issueNumberText.getText().toString());
+      comic.put("publisher", publisherText.getText().toString());
+
+      comic.saveInBackground();
+
+      Intent intent = new Intent(this, ComicReederActivity.class);
+      startActivity(intent);
+    }
     /**
      * Set up the {@link android.app.ActionBar}, if the API is available.
      */
