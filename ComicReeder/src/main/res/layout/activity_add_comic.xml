@@ -1,0 +1,83 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context=".AddComicActivity">
+
+  <TextView
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:textAppearance="?android:attr/textAppearanceLarge"
+      android:text="@string/label_comic_name"
+      android:id="@+id/comicNameTextView"
+      android:layout_marginTop="20dp"
+      android:layout_alignParentTop="true"
+      android:layout_alignParentLeft="true"/>
+
+  <EditText
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:id="@+id/comicName"
+      android:layout_marginLeft="10dp"
+      android:layout_alignBottom="@id/comicNameTextView"
+      android:layout_toRightOf="@+id/comicNameTextView"/>
+
+  <TextView
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:textAppearance="?android:attr/textAppearanceLarge"
+      android:text="@string/label_writer"
+      android:id="@+id/writerTextView"
+      android:layout_marginTop="20dp"
+      android:layout_below="@+id/comicNameTextView"
+      android:layout_alignParentLeft="true"/>
+
+  <EditText
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:id="@+id/writer"
+      android:layout_marginLeft="10dp"
+      android:layout_alignBottom="@+id/writerTextView"
+      android:layout_toRightOf="@id/writerTextView"/>
+
+  <TextView
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:textAppearance="?android:attr/textAppearanceLarge"
+      android:text="@string/label_issue_num"
+      android:id="@+id/issueNumTextView"
+      android:layout_below="@+id/writerTextView"
+      android:layout_marginTop="20dp"
+      android:layout_alignParentLeft="true"/>
+
+  <EditText
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:id="@+id/issueNum"
+      android:layout_toRightOf="@id/issueNumTextView"
+      android:layout_alignBottom="@id/issueNumTextView"
+      android:layout_marginLeft="10dp"/>
+
+  <TextView
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:textAppearance="?android:attr/textAppearanceLarge"
+      android:text="@string/label_publisher"
+      android:id="@+id/publisherTextView"
+      android:layout_below="@+id/issueNumTextView"
+      android:layout_marginTop="20dp"
+      android:layout_alignParentLeft="true"/>
+
+  <EditText
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:id="@+id/publisher"
+      android:layout_alignBottom="@+id/publisherTextView"
+      android:layout_toRightOf="@+id/publisherTextView"
+      android:layout_marginLeft="10dp"/>
+
+</RelativeLayout>
