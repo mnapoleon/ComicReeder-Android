@@ -26,6 +26,8 @@ public class ComicListActivity extends ListActivity {
     @Override
     protected Void doInBackground(Void... params) {
       ParseQuery<ParseObject> query = new ParseQuery<ParseObject>("Comic");
+      query.orderByAscending("comicName");
+      query.addAscendingOrder("issue");
       try {
         queryResults = query.find();
       } catch (ParseException e) {
@@ -36,13 +38,8 @@ public class ComicListActivity extends ListActivity {
 
     @Override
     protected void onPostExecute(Void result) {
-      //List<Map<String, String>> comicList = new ArrayList<Map<String, String>>();
       List<Comic> comicList = new ArrayList<Comic>();
       for (ParseObject queryResult : queryResults) {
-        //Map<String, String> comicMap = new HashMap<String, String>();
-        //comicMap.put("comicName", comic.getString("comicName"));
-        //comicMap.put("Writer",comic.getString("Writer"));
-        //comicList.add(comicMap);
         Comic comic = new Comic();
         comic.setAuthor(queryResult.getString("Writer"));
         comic.setComicName(queryResult.getString("comicName"));
@@ -50,11 +47,6 @@ public class ComicListActivity extends ListActivity {
         comic.setPublisher(queryResult.getString("publisher"));
         comicList.add(comic);
       }
-      //SimpleAdapter adapter = new SimpleAdapter(ComicListActivity.this,
-      //    comicList,
-      //    android.R.layout.simple_expandable_list_item_2,
-      //    new String[] {"comicName", "Writer"},
-      //    new int[] {android.R.id.text1, android.R.id.text2});
       ComicAdapter adapter = new ComicAdapter(ComicListActivity.this, R.layout.comic_list_item, comicList);
       setListAdapter(adapter);
 

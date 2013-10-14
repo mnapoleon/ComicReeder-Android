@@ -14,4 +14,9 @@
   <string name="label_comic_name">Comic: </string>
   <string name="label_writer">Writer: </string>
   <string name="label_issue_num">Issue #: </string>
+
+  <string name="hint_comic_name">Comic</string>
+  <string name="hint_writer">Writer</string>
+  <string name="hint_issue_num">Issue number</string>
+  <string name="hint_publisher">Publisher</string>
 </resources>

@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.app.Activity;
+import android.text.Editable;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -28,13 +29,10 @@ public class AddComicActivity extends Activity {
 
     public void addComic(View view) {
 
-      LayoutInflater inflater = (LayoutInflater)view.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-      View formView = inflater.inflate(R.layout.activity_add_comic, null);
-
-      EditText comicNameText = (EditText)formView.findViewById(R.id.comicName);
-      EditText writerText = (EditText)formView.findViewById(R.id.writer);
-      EditText issueNumberText = (EditText)formView.findViewById(R.id.issueNum);
-      EditText publisherText = (EditText)formView.findViewById(R.id.publisher);
+      EditText comicNameText = (EditText)findViewById(R.id.comicName);
+      EditText writerText = (EditText)findViewById(R.id.writer);
+      EditText issueNumberText = (EditText)findViewById(R.id.issueNum);
+      EditText publisherText = (EditText)findViewById(R.id.publisher);
 
       ParseObject comic = new ParseObject("Comic");
       comic.put("comicName", comicNameText.getText().toString());
