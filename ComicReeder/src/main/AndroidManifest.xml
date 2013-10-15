@@ -41,6 +41,22 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="ComicReederActivity" />
         </activity>
+        <activity
+            android:name=".SearchForComicsActivity"
+            android:label="@string/title_activity_search_from_comics"
+            android:parentActivityName="ComicReederActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="ComicReederActivity" />
+        </activity>
+        <activity
+            android:name="com.mike.comicreeder.ComicSearchListActivity"
+            android:label="@string/title_activity_comic_search_list"
+            android:parentActivityName="SearchForComicsActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="SearchForComicsActivity" />
+        </activity>
     </application>
 
 </manifest>

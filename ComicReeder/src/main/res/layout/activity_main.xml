@@ -14,12 +14,18 @@
         android:layout_alignParentTop="true"
         android:text="@string/get_my_comics"
         android:onClick="getComics"/>
-
-    <Button android:id="@+id/add_comic_button"
+    <Button android:id="@+id/search_button"
             android:layout_height="wrap_content"
             android:layout_width="fill_parent"
             android:layout_alignParentLeft="true"
             android:layout_below="@id/get_button"
+            android:text="@string/search_for_comics"
+            android:onClick="searchForComics"/>
+    <Button android:id="@+id/add_comic_button"
+            android:layout_height="wrap_content"
+            android:layout_width="fill_parent"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@id/search_button"
             android:text="@string/add_comic"
             android:onClick="addComic"/>
 </RelativeLayout>
