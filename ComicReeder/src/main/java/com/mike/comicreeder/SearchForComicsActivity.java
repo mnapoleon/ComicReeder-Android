@@ -49,6 +49,7 @@ public class SearchForComicsActivity extends Activity {
       ArrayList<Comic> comicList = new ArrayList<Comic>();
       for (ParseObject queryResult : queryResults) {
         Comic comic = new Comic();
+        comic.setObjectId(queryResult.getObjectId());
         comic.setWriter(queryResult.getString("writer"));
         comic.setComicName(queryResult.getString("comicName"));
         comic.setIssueNumber(Integer.toString(queryResult.getInt("issue")));

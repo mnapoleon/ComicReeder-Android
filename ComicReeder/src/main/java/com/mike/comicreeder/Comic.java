@@ -8,6 +8,7 @@ import android.os.Parcelable;
  */
 public class Comic implements Parcelable {
 
+  private String _objectId;
   private String comicName;
   private String writer;
   private String issueNumber;
@@ -20,6 +21,14 @@ public class Comic implements Parcelable {
     writer = in.readString();
     issueNumber = in.readString();
     publisher = in.readString();
+  }
+
+  public String getObjectId() {
+    return _objectId;
+  }
+
+  public void setObjectId(String objectId) {
+    this._objectId = objectId;
   }
 
   public String getIssueNumber() {
