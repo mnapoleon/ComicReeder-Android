@@ -20,12 +20,7 @@ public class ComicSearchListActivity extends ListActivity {
     // Show the Up button in the action bar.
     setupActionBar();
 
-    Bundle extras = getIntent().getExtras();
-    ArrayList<Comic> comicList = new ArrayList<Comic>();
-    if (extras != null) {
-      comicList = (ArrayList<Comic>)extras.getSerializable("comicData");
-    }
-
+    ArrayList<Comic> comicList= getIntent().getParcelableArrayListExtra("comicData");
     ComicAdapter adapter = new ComicAdapter(this, R.layout.comic_list_item, comicList);
     setListAdapter(adapter);
   }

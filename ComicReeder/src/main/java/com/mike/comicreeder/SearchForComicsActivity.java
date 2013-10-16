@@ -57,10 +57,9 @@ public class SearchForComicsActivity extends Activity {
       }
 
       Intent intent = new Intent(SearchForComicsActivity.this, ComicSearchListActivity.class);
-      intent.putExtra("comicData", comicList);
+      intent.putParcelableArrayListExtra("comicData", comicList);
+
       startActivity(intent);
-      //ComicAdapter adapter = new ComicAdapter(SearchForComicsActivity.this, R.layout.comic_list_item, comicList);
-      //setListAdapter(adapter);
     }
   }
 
@@ -118,7 +117,7 @@ public class SearchForComicsActivity extends Activity {
       searchParams.put("comicName", comicName.getText().toString().trim());
     }
     if (writerName.getText().toString() != null && writerName.getText().toString().trim().length() > 0) {
-      searchParams.put("writer", writerName.getText().toString().trim());
+      searchParams.put("Writer", writerName.getText().toString().trim());
     }
     if (publisherName.getText().toString() != null && publisherName.getText().toString().trim().length() > 0) {
       searchParams.put("publisher", publisherName.getText().toString().trim());
