@@ -34,10 +34,10 @@ public class AddComicActivity extends Activity {
       EditText issueNumberText = (EditText)findViewById(R.id.issueNum);
       EditText publisherText = (EditText)findViewById(R.id.publisher);
 
-      ParseObject comic = new ParseObject("Comic");
+      ParseObject comic = new ParseObject("Comics");
       comic.put("comicName", comicNameText.getText().toString());
-      comic.put("Writer", writerText.getText().toString());
-      comic.put("issue", issueNumberText.getText().toString());
+      comic.put("writer", writerText.getText().toString());
+      comic.put("issue", Integer.parseInt(issueNumberText.getText().toString()));
       comic.put("publisher", publisherText.getText().toString());
 
       comic.saveInBackground();

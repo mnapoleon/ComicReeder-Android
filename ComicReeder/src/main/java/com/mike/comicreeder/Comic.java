@@ -9,7 +9,7 @@ import android.os.Parcelable;
 public class Comic implements Parcelable {
 
   private String comicName;
-  private String author;
+  private String writer;
   private String issueNumber;
   private String publisher;
 
@@ -17,7 +17,7 @@ public class Comic implements Parcelable {
 
   private Comic(Parcel in) {
     comicName = in.readString();
-    author = in.readString();
+    writer = in.readString();
     issueNumber = in.readString();
     publisher = in.readString();
   }
@@ -38,12 +38,12 @@ public class Comic implements Parcelable {
     this.publisher = publisher;
   }
 
-  public String getAuthor() {
-    return author;
+  public String getWriter() {
+    return writer;
   }
 
-  public void setAuthor(String author) {
-    this.author = author;
+  public void setWriter(String writer) {
+    this.writer = writer;
   }
 
   public String getComicName() {
@@ -62,7 +62,7 @@ public class Comic implements Parcelable {
   @Override
   public void writeToParcel(Parcel dest, int flags) {
     dest.writeString(comicName);
-    dest.writeString(author);
+    dest.writeString(writer);
     dest.writeString(issueNumber);
     dest.writeString(publisher);
 

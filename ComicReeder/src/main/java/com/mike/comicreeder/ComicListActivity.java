@@ -4,19 +4,13 @@ import android.app.ListActivity;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.Menu;
-import android.widget.ArrayAdapter;
-import android.widget.ListAdapter;
-import android.widget.SimpleAdapter;
 
-import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class ComicListActivity extends ListActivity {
 
@@ -25,7 +19,7 @@ public class ComicListActivity extends ListActivity {
   private class RemoteDataTask extends AsyncTask<Void, Void, Void> {
     @Override
     protected Void doInBackground(Void... params) {
-      ParseQuery<ParseObject> query = new ParseQuery<ParseObject>("Comic");
+      ParseQuery<ParseObject> query = new ParseQuery<ParseObject>("Comics");
       query.orderByAscending("comicName");
       query.addAscendingOrder("issue");
       try {
@@ -41,9 +35,9 @@ public class ComicListActivity extends ListActivity {
       List<Comic> comicList = new ArrayList<Comic>();
       for (ParseObject queryResult : queryResults) {
         Comic comic = new Comic();
-        comic.setAuthor(queryResult.getString("Writer"));
+        comic.setWriter(queryResult.getString("writer"));
         comic.setComicName(queryResult.getString("comicName"));
-        comic.setIssueNumber(queryResult.getString("issue"));
+        comic.setIssueNumber(Integer.toString(queryResult.getInt("issue")));
         comic.setPublisher(queryResult.getString("publisher"));
         comicList.add(comic);
       }

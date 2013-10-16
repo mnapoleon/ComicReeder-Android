@@ -58,7 +58,7 @@ public class ComicAdapter extends ArrayAdapter<Comic> {
         mt.setText("Author: ");
       }
       if (mtd != null){
-        mtd.setText(i.getAuthor());
+        mtd.setText(i.getWriter());
       }
       if (bt != null){
         bt.setText("Issue # ");

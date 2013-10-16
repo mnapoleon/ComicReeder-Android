@@ -29,7 +29,7 @@ public class SearchForComicsActivity extends Activity {
 
     @Override
     protected Void doInBackground(Map<String, String>... params) {
-      ParseQuery<ParseObject> query = new ParseQuery<ParseObject>("Comic");
+      ParseQuery<ParseObject> query = new ParseQuery<ParseObject>("Comics");
       Map<String, String> onlyParams = params[0];
       for (String key: onlyParams.keySet()) {
         query.whereEqualTo(key, onlyParams.get(key));
@@ -49,9 +49,9 @@ public class SearchForComicsActivity extends Activity {
       ArrayList<Comic> comicList = new ArrayList<Comic>();
       for (ParseObject queryResult : queryResults) {
         Comic comic = new Comic();
-        comic.setAuthor(queryResult.getString("Writer"));
+        comic.setWriter(queryResult.getString("writer"));
         comic.setComicName(queryResult.getString("comicName"));
-        comic.setIssueNumber(queryResult.getString("issue"));
+        comic.setIssueNumber(Integer.toString(queryResult.getInt("issue")));
         comic.setPublisher(queryResult.getString("publisher"));
         comicList.add(comic);
       }
@@ -117,7 +117,7 @@ public class SearchForComicsActivity extends Activity {
       searchParams.put("comicName", comicName.getText().toString().trim());
     }
     if (writerName.getText().toString() != null && writerName.getText().toString().trim().length() > 0) {
-      searchParams.put("Writer", writerName.getText().toString().trim());
+      searchParams.put("writer", writerName.getText().toString().trim());
     }
     if (publisherName.getText().toString() != null && publisherName.getText().toString().trim().length() > 0) {
       searchParams.put("publisher", publisherName.getText().toString().trim());
