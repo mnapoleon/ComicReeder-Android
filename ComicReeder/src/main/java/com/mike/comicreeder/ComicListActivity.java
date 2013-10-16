@@ -38,7 +38,7 @@ public class ComicListActivity extends ListActivity {
         comic.setObjectId(queryResult.getObjectId());
         comic.setWriter(queryResult.getString("writer"));
         comic.setComicName(queryResult.getString("comicName"));
-        comic.setIssueNumber(Integer.toString(queryResult.getInt("issue")));
+        comic.setIssueNumber(queryResult.getInt("issue"));
         comic.setPublisher(queryResult.getString("publisher"));
         comicList.add(comic);
       }

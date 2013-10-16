@@ -64,7 +64,7 @@ public class ComicAdapter extends ArrayAdapter<Comic> {
         bt.setText("Issue # ");
       }
       if (btd != null){
-        btd.setText(i.getIssueNumber());
+        btd.setText(String.valueOf(i.getIssueNumber()));
       }
     }
 

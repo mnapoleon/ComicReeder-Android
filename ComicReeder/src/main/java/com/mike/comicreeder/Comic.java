@@ -11,16 +11,17 @@ public class Comic implements Parcelable {
   private String _objectId;
   private String comicName;
   private String writer;
-  private String issueNumber;
   private String publisher;
+  private int issueNumber;
 
   public Comic(){};
 
   private Comic(Parcel in) {
+    _objectId = in.readString();
     comicName = in.readString();
     writer = in.readString();
-    issueNumber = in.readString();
     publisher = in.readString();
+    issueNumber = in.readInt();
   }
 
   public String getObjectId() {
@@ -31,11 +32,11 @@ public class Comic implements Parcelable {
     this._objectId = objectId;
   }
 
-  public String getIssueNumber() {
+  public int getIssueNumber() {
     return issueNumber;
   }
 
-  public void setIssueNumber(String issueNumber) {
+  public void setIssueNumber(int issueNumber) {
     this.issueNumber = issueNumber;
   }
 
@@ -70,10 +71,11 @@ public class Comic implements Parcelable {
 
   @Override
   public void writeToParcel(Parcel dest, int flags) {
+    dest.writeString(_objectId);
     dest.writeString(comicName);
     dest.writeString(writer);
-    dest.writeString(issueNumber);
     dest.writeString(publisher);
+    dest.writeInt(issueNumber);
 
   }
 
