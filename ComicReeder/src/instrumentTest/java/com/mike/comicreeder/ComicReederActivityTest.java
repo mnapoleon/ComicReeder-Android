@@ -13,7 +13,9 @@ public class ComicReederActivityTest extends ActivityUnitTestCase<ComicReederAct
 
   ComicReederActivity comicReederActivity;
 
-  Button button;
+  Button button1;
+  Button button2;
+  Button button3;
 
   public ComicReederActivityTest() {
     super(ComicReederActivity.class);
@@ -27,14 +29,23 @@ public class ComicReederActivityTest extends ActivityUnitTestCase<ComicReederAct
 
     comicReederActivity = getActivity();
 
-    button = (Button) comicReederActivity.findViewById(R.id.get_button);
+    button1 = (Button) comicReederActivity.findViewById(R.id.get_button);
+    button2 = (Button) comicReederActivity.findViewById(R.id.search_button);
+    button3 = (Button) comicReederActivity.findViewById(R.id.add_comic_button);
   }
 
   @SmallTest
-  public void testButton() {
-    String actualButtonText = button.getText().toString();
+  public void testButtons() {
+    String actualButton1Text = button1.getText().toString();
+    String expected1 = "Get My Comics";
+    assertEquals(expected1, actualButton1Text);
 
-    String expected = "Get My Comics";
-    assertEquals(expected, actualButtonText);
+    String actualButton2Text = button2.getText().toString();
+    String expected2 = "Search for Comics";
+    assertEquals(expected2, actualButton2Text);
+
+    String actualButton3Text = button3.getText().toString();
+    String expected3 = "Add Comic";
+    assertEquals(expected3, actualButton3Text);
   }
 }
