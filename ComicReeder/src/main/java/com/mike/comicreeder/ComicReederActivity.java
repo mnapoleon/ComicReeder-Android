@@ -23,11 +23,6 @@ public class ComicReederActivity extends Activity {
       setContentView(R.layout.activity_main);
     }
 
-    public void getComics(View view) {
-      Intent intent = new Intent(this, ComicListActivity.class);
-      startActivity(intent);
-    }
-
     public void addComic(View view) {
       Intent intent = new Intent(this, AddComicActivity.class);
       startActivity(intent);

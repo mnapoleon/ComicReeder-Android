@@ -25,15 +25,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name="com.mike.comicreeder.ComicListActivity"
-            android:label="@string/title_activity_comic_list"
-            android:parentActivityName="com.mike.comicreeder.ComicReederActivity" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.mike.comicreeder.ComicReederActivity" />
-        </activity>
-        <activity
+      <activity
             android:name="com.mike.comicreeder.AddComicActivity"
             android:label="@string/title_activity_add_comic"
             android:parentActivityName="ComicReederActivity" >
