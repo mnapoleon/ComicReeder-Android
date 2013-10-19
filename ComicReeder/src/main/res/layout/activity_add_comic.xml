@@ -1,7 +1,8 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
@@ -9,90 +10,63 @@
     tools:context=".AddComicActivity">
 
   <TextView
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:textAppearance="?android:attr/textAppearanceLarge"
-      android:text="@string/label_comic_name"
-      android:id="@+id/comicNameTextView"
-      android:layout_marginTop="20dp"
-      android:layout_alignParentTop="true"
-      android:layout_alignParentLeft="true"/>
-
+      android:id="@+id/comicFloatingLabel"
+      style="@style/FloatingLabel"/>
   <EditText
-      android:layout_width="wrap_content"
+      android:layout_width="fill_parent"
       android:layout_height="wrap_content"
       android:id="@+id/comicName"
       android:layout_marginLeft="10dp"
-      android:layout_alignBottom="@id/comicNameTextView"
-      android:layout_toRightOf="@+id/comicNameTextView"
+      android:layout_marginTop="5dp"
+      android:layout_marginBottom="5dp"
+      android:layout_alignParentLeft="true"
       android:inputType="text"
       android:hint="@string/hint_comic_name"/>
 
   <TextView
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:textAppearance="?android:attr/textAppearanceLarge"
-      android:text="@string/label_writer"
-      android:id="@+id/writerTextView"
-      android:layout_marginTop="20dp"
-      android:layout_below="@+id/comicNameTextView"
-      android:layout_alignParentLeft="true"/>
-
+    style="@style/FloatingLabel"
+    android:text="@string/label_writer"/>
   <EditText
-      android:layout_width="wrap_content"
+      android:layout_width="fill_parent"
       android:layout_height="wrap_content"
       android:id="@+id/writer"
       android:layout_marginLeft="10dp"
-      android:layout_alignBottom="@+id/writerTextView"
-      android:layout_toRightOf="@id/writerTextView"
+      android:layout_marginTop="5dp"
+      android:layout_marginBottom="5dp"
+      android:layout_alignBottom="@+id/comicName"
+      android:layout_below="@+id/comicName"
       android:inputType="text"
       android:hint="@string/hint_writer"/>
 
   <TextView
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:textAppearance="?android:attr/textAppearanceLarge"
-      android:text="@string/label_issue_num"
-      android:id="@+id/issueNumTextView"
-      android:layout_below="@+id/writerTextView"
-      android:layout_marginTop="20dp"
-      android:layout_alignParentLeft="true"/>
-
+      style="@style/FloatingLabel"
+      android:text="@string/label_issue_num"/>
   <EditText
-      android:layout_width="wrap_content"
+      android:layout_width="fill_parent"
       android:layout_height="wrap_content"
       android:id="@+id/issueNum"
-      android:layout_toRightOf="@id/issueNumTextView"
-      android:layout_alignBottom="@id/issueNumTextView"
       android:layout_marginLeft="10dp"
+      android:layout_marginTop="5dp"
+      android:layout_marginBottom="5dp"
       android:inputType="text"
       android:hint="@string/hint_issue_num"/>
 
   <TextView
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:textAppearance="?android:attr/textAppearanceLarge"
-      android:text="@string/label_publisher"
-      android:id="@+id/publisherTextView"
-      android:layout_below="@+id/issueNumTextView"
-      android:layout_marginTop="20dp"
-      android:layout_alignParentLeft="true"/>
-
+      style="@style/FloatingLabel"
+      android:text="@string/label_publisher"/>
   <EditText
-      android:layout_width="wrap_content"
+      android:layout_width="fill_parent"
       android:layout_height="wrap_content"
       android:id="@+id/publisher"
-      android:layout_alignBottom="@+id/publisherTextView"
-      android:layout_toRightOf="@+id/publisherTextView"
       android:layout_marginLeft="10dp"
+      android:layout_marginTop="5dp"
       android:inputType="text"
       android:hint="@string/hint_publisher"/>
 
   <Button android:id="@+id/add_comic_button"
           android:layout_height="wrap_content"
           android:layout_width="fill_parent"
-          android:layout_below="@id/publisherTextView"
           android:layout_marginTop="10dp"
           android:text="@string/add_comic"
           android:onClick="addComic"/>
-</RelativeLayout>
+</LinearLayout>

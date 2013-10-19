@@ -10,10 +10,10 @@
     <string name="search_for_comics">Search for Comics</string>
     <string name="add_comic">Add Comic</string>
     <string name="title_activity_add_comic">Add Comic</string>
-    <string name="label_publisher">Publisher: </string>
-    <string name="label_comic_name">Comic: </string>
-    <string name="label_writer">Writer: </string>
-    <string name="label_issue_num">Issue #: </string>
+    <string name="label_publisher">Publisher</string>
+    <string name="label_comic_name">Comic</string>
+    <string name="label_writer">Writer</string>
+    <string name="label_issue_num">Issue #</string>
     <string name="hint_comic_name">Comic</string>
     <string name="hint_writer">Writer</string>
     <string name="hint_issue_num">Issue number</string>

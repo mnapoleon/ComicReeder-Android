@@ -17,4 +17,9 @@
         <!-- All customizations that are NOT specific to a particular API-level can go here. -->
     </style>
 
+    <style name="FloatingLabel" parent="@android:style/TextAppearance.Small">
+      <item name="android:layout_width">50dp</item>
+      <item name="android:layout_height">9dp</item>
+      <item name="android:textSize">8sp</item>
+    </style>
 </resources>
