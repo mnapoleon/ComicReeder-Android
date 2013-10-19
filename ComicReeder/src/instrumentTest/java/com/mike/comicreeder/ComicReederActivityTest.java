@@ -1,20 +1,20 @@
 package com.mike.comicreeder;
 
-import android.content.Intent;
-import android.test.ActivityUnitTestCase;
+import android.test.ActivityInstrumentationTestCase2;
+import android.test.ViewAsserts;
 import android.test.suitebuilder.annotation.SmallTest;
-import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 
 /**
  * Created by michaelnapoleon on 10/11/13.
  */
-public class ComicReederActivityTest extends ActivityUnitTestCase<ComicReederActivity> {
+public class ComicReederActivityTest extends ActivityInstrumentationTestCase2<ComicReederActivity> {
 
   ComicReederActivity comicReederActivity;
 
+  Button button1;
   Button button2;
-  Button button3;
 
   public ComicReederActivityTest() {
     super(ComicReederActivity.class);
@@ -24,23 +24,19 @@ public class ComicReederActivityTest extends ActivityUnitTestCase<ComicReederAct
   protected void setUp() throws Exception {
     super.setUp();
 
-    startActivity(new Intent(getInstrumentation().getTargetContext(), ComicReederActivity.class), null, null);
+    setActivityInitialTouchMode(true);
 
     comicReederActivity = getActivity();
 
-    button2 = (Button) comicReederActivity.findViewById(R.id.search_button);
-    button3 = (Button) comicReederActivity.findViewById(R.id.add_comic_button);
+    button1 = (Button) comicReederActivity.findViewById(R.id.search_button);
+    button2 = (Button) comicReederActivity.findViewById(R.id.add_comic_button);
   }
 
   @SmallTest
-  public void testButtons() {
+  public void testButtons_layout() {
+    final View decorView = comicReederActivity.getWindow().getDecorView();
 
-    String actualButton2Text = button2.getText().toString();
-    String expected2 = "Search for Comics";
-    assertEquals(expected2, actualButton2Text);
-
-    String actualButton3Text = button3.getText().toString();
-    String expected3 = "Add Comic";
-    assertEquals(expected3, actualButton3Text);
+    ViewAsserts.assertOnScreen(decorView, button1);
+    ViewAsserts.assertOnScreen(decorView, button2);
   }
 }

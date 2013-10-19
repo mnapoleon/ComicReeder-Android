@@ -49,9 +49,7 @@ public class AddComicActivity extends Activity {
     @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     private void setupActionBar() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
-          if (getActionBar() != null) {
-            getActionBar().setDisplayHomeAsUpEnabled(true);
-          }
+          getActionBar().setDisplayHomeAsUpEnabled(true);
         }
     }
 

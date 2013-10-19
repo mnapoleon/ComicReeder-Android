@@ -1,14 +1,15 @@
 package com.mike.comicreeder;
 
-import android.content.Intent;
-import android.test.ActivityUnitTestCase;
+import android.test.ActivityInstrumentationTestCase2;
+import android.test.ViewAsserts;
 import android.test.suitebuilder.annotation.SmallTest;
+import android.view.View;
 import android.widget.EditText;
 
 /**
  * Created by michaelnapoleon on 10/17/13.
  */
-public class AddComicActivityTest extends ActivityUnitTestCase<AddComicActivity> {
+public class AddComicActivityTest extends ActivityInstrumentationTestCase2<AddComicActivity> {
 
   AddComicActivity addComicActivity;
 
@@ -25,12 +26,7 @@ public class AddComicActivityTest extends ActivityUnitTestCase<AddComicActivity>
   protected void setUp() throws Exception {
     super.setUp();
 
-    startActivity(new Intent(getInstrumentation().getTargetContext(), AddComicActivity.class), null, null);
-
-  }
-
-  @SmallTest
-  public void testEditTextControls() {
+    setActivityInitialTouchMode(true);
     addComicActivity = getActivity();
 
     comicName = (EditText) addComicActivity.findViewById(R.id.comicName);
@@ -38,9 +34,15 @@ public class AddComicActivityTest extends ActivityUnitTestCase<AddComicActivity>
     issueNumber = (EditText) addComicActivity.findViewById(R.id.issueNum);
     publisherName = (EditText) addComicActivity.findViewById(R.id.publisher);
 
-    assertNotNull(comicName);
-    assertNotNull(writerName);
-    assertNotNull(issueNumber);
-    assertNotNull(publisherName);
+  }
+
+  @SmallTest
+  public void testEditTexts_layout() {
+    final View decorView = addComicActivity.getWindow().getDecorView();
+
+    ViewAsserts.assertOnScreen(decorView, comicName);
+    ViewAsserts.assertOnScreen(decorView, writerName);
+    ViewAsserts.assertOnScreen(decorView, issueNumber);
+    ViewAsserts.assertOnScreen(decorView, publisherName);
   }
 }
