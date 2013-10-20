@@ -2,7 +2,8 @@
 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:layout_marginBottom="5dp">
 
 
   <!-- Item Name -->
@@ -10,7 +11,7 @@
       android:id="@+id/toptext"
 
       android:layout_width="wrap_content"
-      android:layout_height="26dip"
+      android:layout_height="wrap_content"
 
       android:layout_alignParentTop="true"
       android:layout_alignParentLeft="true"
@@ -33,6 +34,7 @@
 
       android:singleLine="true"
       android:ellipsize="marquee"
+      style="@style/ComicName"
       />
 
   <!-- Price Tag -->
@@ -40,7 +42,7 @@
       android:id="@+id/middletext"
 
       android:layout_width="wrap_content"
-      android:layout_height="26dip"
+      android:layout_height="wrap_content"
 
       android:layout_alignParentLeft="true"
       android:layout_below="@id/toptext"
@@ -54,7 +56,7 @@
       android:id="@+id/middletextdata"
 
       android:layout_width="fill_parent"
-      android:layout_height="26dip"
+      android:layout_height="wrap_content"
 
       android:layout_alignParentRight="true"
       android:layout_below="@id/toptext"
