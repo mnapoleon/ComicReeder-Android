@@ -7,6 +7,8 @@ import android.view.MenuItem;
 import android.support.v4.app.NavUtils;
 import android.annotation.TargetApi;
 import android.os.Build;
+import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.mike.comicreeder.R;
 import com.mike.comicreeder.model.Comic;
@@ -23,8 +25,17 @@ public class ComicSearchListActivity extends ListActivity {
     setupActionBar();
 
     ArrayList<Comic> comicList= getIntent().getParcelableArrayListExtra("comicData");
-    ComicAdapter adapter = new ComicAdapter(this, R.layout.comic_list_item, comicList);
-    setListAdapter(adapter);
+    if (comicList == null || comicList.size() == 0) {
+      ViewGroup comicListLayout = (ViewGroup)findViewById(R.id.comic_list_layout);
+      TextView zeroResultsTV = new TextView(ComicSearchListActivity.this);
+      zeroResultsTV.setText("No results found");
+
+      comicListLayout.addView(zeroResultsTV);
+    }
+    else {
+      ComicAdapter adapter = new ComicAdapter(this, R.layout.comic_list_item, comicList);
+      setListAdapter(adapter);
+    }
   }
 
   /**
