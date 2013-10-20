@@ -1,4 +1,4 @@
-package com.mike.comicreeder;
+package com.mike.comicreeder.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -6,6 +6,7 @@ import android.app.Activity;
 import android.view.Menu;
 import android.view.View;
 
+import com.mike.comicreeder.R;
 import com.parse.Parse;
 import com.parse.ParseAnalytics;
 

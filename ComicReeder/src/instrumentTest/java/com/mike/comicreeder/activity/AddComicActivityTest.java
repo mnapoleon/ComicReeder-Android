@@ -1,10 +1,13 @@
-package com.mike.comicreeder;
+package com.mike.comicreeder.activity;
 
 import android.test.ActivityInstrumentationTestCase2;
 import android.test.ViewAsserts;
 import android.test.suitebuilder.annotation.SmallTest;
 import android.view.View;
 import android.widget.EditText;
+
+import com.mike.comicreeder.R;
+
 
 /**
  * Created by michaelnapoleon on 10/17/13.

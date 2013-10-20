@@ -1,4 +1,4 @@
-package com.mike.comicreeder;
+package com.mike.comicreeder.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,6 +14,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.mike.comicreeder.R;
 import com.parse.ParseObject;
 
 public class AddComicActivity extends Activity {
@@ -25,7 +26,14 @@ public class AddComicActivity extends Activity {
     // Show the Up button in the action bar.
     setupActionBar();
 
-    EditText comicEditText = (EditText) findViewById(R.id.comicName);
+    setUpEditTextAndLabel(R.id.comicName, R.id.comicFloatingLabel);
+    setUpEditTextAndLabel(R.id.writer, R.id.writerFloatingLabel);
+    setUpEditTextAndLabel(R.id.issueNum, R.id.issueNumFloatingLabel);
+    setUpEditTextAndLabel(R.id.publisher, R.id.publisherFloatingLabel);
+  }
+
+  private void setUpEditTextAndLabel(final int editTextViewId, final int labelViewId) {
+    final EditText editText = (EditText) findViewById(editTextViewId);
 
     TextWatcher textWatcher = new TextWatcher() {
       @Override
@@ -35,12 +43,12 @@ public class AddComicActivity extends Activity {
 
       @Override
       public void onTextChanged(CharSequence s, int start, int before, int count) {
-        TextView tv1 = (TextView)findViewById(R.id.comicFloatingLabel);
+        TextView textView = (TextView)findViewById(labelViewId);
         if (s.length() == 0) {
-          tv1.setText("");
+          textView.setText("");
         }
         else if (s.length() == 1) {
-          tv1.setText("Comic");
+          textView.setText(editText.getHint());
         }
       }
 
@@ -50,7 +58,7 @@ public class AddComicActivity extends Activity {
       }
     };
 
-    comicEditText.addTextChangedListener(textWatcher);
+    editText.addTextChangedListener(textWatcher);
   }
 
 

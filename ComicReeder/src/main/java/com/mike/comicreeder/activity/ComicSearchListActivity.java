@@ -1,4 +1,4 @@
-package com.mike.comicreeder;
+package com.mike.comicreeder.activity;
 
 import android.app.ListActivity;
 import android.os.Bundle;
@@ -7,6 +7,9 @@ import android.view.MenuItem;
 import android.support.v4.app.NavUtils;
 import android.annotation.TargetApi;
 import android.os.Build;
+
+import com.mike.comicreeder.R;
+import com.mike.comicreeder.model.Comic;
 
 import java.util.ArrayList;
 

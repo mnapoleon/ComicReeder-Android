@@ -6,7 +6,7 @@
                 android:paddingRight="@dimen/activity_horizontal_margin"
                 android:paddingTop="@dimen/activity_vertical_margin"
                 android:paddingBottom="@dimen/activity_vertical_margin"
-                tools:context=".ComicReederActivity">
+                tools:context=".activity.ComicReederActivity">
 
   <Button
       android:id="@+id/search_button"

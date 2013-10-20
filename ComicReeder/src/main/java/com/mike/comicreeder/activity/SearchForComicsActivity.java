@@ -1,4 +1,4 @@
-package com.mike.comicreeder;
+package com.mike.comicreeder.activity;
 
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -12,6 +12,8 @@ import android.os.Build;
 import android.view.View;
 import android.widget.EditText;
 
+import com.mike.comicreeder.R;
+import com.mike.comicreeder.model.Comic;
 import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;

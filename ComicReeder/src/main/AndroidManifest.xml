@@ -17,7 +17,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="com.mike.comicreeder.ComicReederActivity"
+            android:name=".activity.ComicReederActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -26,28 +26,28 @@
             </intent-filter>
         </activity>
       <activity
-            android:name="com.mike.comicreeder.AddComicActivity"
+            android:name=".activity.AddComicActivity"
             android:label="@string/title_activity_add_comic"
-            android:parentActivityName="ComicReederActivity" >
+            android:parentActivityName=".activity.ComicReederActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="ComicReederActivity" />
+                android:value=".activity.ComicReederActivity" />
         </activity>
         <activity
-            android:name=".SearchForComicsActivity"
+            android:name=".activity.SearchForComicsActivity"
             android:label="@string/title_activity_search_from_comics"
-            android:parentActivityName="ComicReederActivity" >
+            android:parentActivityName=".activity.ComicReederActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="ComicReederActivity" />
+                android:value=".activity.ComicReederActivity" />
         </activity>
         <activity
-            android:name="com.mike.comicreeder.ComicSearchListActivity"
+            android:name=".activity.ComicSearchListActivity"
             android:label="@string/title_activity_comic_search_list"
-            android:parentActivityName="SearchForComicsActivity" >
+            android:parentActivityName=".activity.SearchForComicsActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="SearchForComicsActivity" />
+                android:value=".activity.SearchForComicsActivity" />
         </activity>
     </application>
 

@@ -1,4 +1,4 @@
-package com.mike.comicreeder;
+package com.mike.comicreeder.model;
 
 import android.os.Parcel;
 import android.os.Parcelable;
