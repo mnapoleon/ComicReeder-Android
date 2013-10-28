@@ -3,18 +3,15 @@ package com.mike.comicreeder.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.app.Activity;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.support.v4.app.NavUtils;
 import android.annotation.TargetApi;
 import android.os.Build;
 import android.view.View;
-import android.widget.EditText;
-import android.widget.TextView;
 
 import com.mike.comicreeder.R;
+import com.mike.comicreeder.components.FloatingLabelEditText;
 import com.parse.ParseObject;
 
 public class AddComicActivity extends Activity {
@@ -25,55 +22,20 @@ public class AddComicActivity extends Activity {
     setContentView(R.layout.activity_add_comic);
     // Show the Up button in the action bar.
     setupActionBar();
-
-    setUpEditTextAndLabel(R.id.comicName, R.id.comicFloatingLabel);
-    setUpEditTextAndLabel(R.id.writer, R.id.writerFloatingLabel);
-    setUpEditTextAndLabel(R.id.issueNum, R.id.issueNumFloatingLabel);
-    setUpEditTextAndLabel(R.id.publisher, R.id.publisherFloatingLabel);
   }
-
-  private void setUpEditTextAndLabel(final int editTextViewId, final int labelViewId) {
-    final EditText editText = (EditText) findViewById(editTextViewId);
-
-    TextWatcher textWatcher = new TextWatcher() {
-      @Override
-      public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-      }
-
-      @Override
-      public void onTextChanged(CharSequence s, int start, int before, int count) {
-        TextView textView = (TextView)findViewById(labelViewId);
-        if (s.length() == 0) {
-          textView.setText("");
-        }
-        else if (s.length() == 1) {
-          textView.setText(editText.getHint());
-        }
-      }
-
-      @Override
-      public void afterTextChanged(Editable s) {
-
-      }
-    };
-
-    editText.addTextChangedListener(textWatcher);
-  }
-
 
   public void addComic(View view) {
 
-    EditText comicNameText = (EditText) findViewById(R.id.comicName);
-    EditText writerText = (EditText) findViewById(R.id.writer);
-    EditText issueNumberText = (EditText) findViewById(R.id.issueNum);
-    EditText publisherText = (EditText) findViewById(R.id.publisher);
+    FloatingLabelEditText comicNameText = (FloatingLabelEditText) findViewById(R.id.comicName);
+    FloatingLabelEditText writerText = (FloatingLabelEditText) findViewById(R.id.writer);
+    FloatingLabelEditText issueNumberText = (FloatingLabelEditText) findViewById(R.id.issueNum);
+    FloatingLabelEditText publisherText = (FloatingLabelEditText) findViewById(R.id.publisher);
 
     ParseObject comic = new ParseObject("Comics");
-    comic.put("comicName", comicNameText.getText().toString());
-    comic.put("writer", writerText.getText().toString());
-    comic.put("issue", Integer.parseInt(issueNumberText.getText().toString()));
-    comic.put("publisher", publisherText.getText().toString());
+    comic.put("comicName", comicNameText.getTextFieldValue().toString());
+    comic.put("writer", writerText.getTextFieldValue().toString());
+    comic.put("issue", Integer.parseInt(issueNumberText.getTextFieldValue().toString()));
+    comic.put("publisher", publisherText.getTextFieldValue().toString());
 
     comic.saveInBackground();
 
