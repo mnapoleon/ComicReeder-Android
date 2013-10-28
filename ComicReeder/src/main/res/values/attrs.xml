@@ -1,6 +1,6 @@
 <resources>
     <declare-styleable name="FloatingLabelEditText">
-        <attr name="editTextHint" format="string"/>
-        <attr name="floatingLabelText" format="string"/>
+        <attr name="editTextHint" format="string" />
+        <attr name="floatingLabelText" format="string" />
     </declare-styleable>
 </resources>

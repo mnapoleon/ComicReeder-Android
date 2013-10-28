@@ -20,50 +20,23 @@
         android:layout_centerHorizontal="true" />
 
     <com.mike.comicreeder.components.FloatingLabelEditText
-        android:id="@+id/testFloatLabel"
-        android:layout_height="wrap_content"
-        android:layout_width="fill_parent"
-        editTextHint="ComicName"
-        floatingLabelText="Comic Name Goes Here"/>
-
-    <TextView
-        android:id="@+id/comicSearchFloatingLabel"
-        style="@style/FloatingLabel"/>
-    <EditText
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
         android:id="@+id/comicNameSearch"
-        android:layout_marginLeft="10dp"
-        android:layout_marginBottom="10dp"
-        android:layout_below="@+id/search_label"
-        android:inputType="text"
-        android:hint="@string/hint_comic_name" />
-
-    <TextView
-        android:id="@+id/writerSearchFloatingLabel"
-        style="@style/FloatingLabel"/>
-    <EditText
-        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:layout_width="fill_parent"
+        custom:editTextHint="@string/hint_comic_name" />
+
+    <com.mike.comicreeder.components.FloatingLabelEditText
         android:id="@+id/writerSearch"
-        android:layout_marginLeft="10dp"
-        android:layout_marginBottom="10dp"
-        android:layout_below="@+id/comicNameSearch"
-        android:inputType="text"
-        android:hint="@string/hint_writer" />
-
-    <TextView
-        android:id="@+id/publisherSearchFloatingLabel"
-        style="@style/FloatingLabel"/>
-    <EditText
-        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:layout_width="fill_parent"
+        custom:editTextHint="@string/hint_writer" />
+
+    <com.mike.comicreeder.components.FloatingLabelEditText
         android:id="@+id/publisherSearch"
-        android:layout_marginLeft="10dp"
-        android:layout_marginBottom="10dp"
-        android:layout_below="@+id/writerSearch"
-        android:inputType="text"
-        android:hint="@string/hint_publisher" />
+        android:layout_height="wrap_content"
+        android:layout_width="fill_parent"
+        custom:editTextHint="@string/hint_publisher" />
+
 
     <Button
         android:id="@+id/search_button"

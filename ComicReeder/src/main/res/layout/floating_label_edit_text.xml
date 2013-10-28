@@ -4,7 +4,8 @@
 
     <TextView
         android:id="@+id/floatingLabel"
-        style="@style/FloatingLabel"/>
+        style="@style/FloatingLabel" />
+
     <EditText
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
@@ -12,6 +13,6 @@
         android:layout_marginLeft="10dp"
         android:layout_marginTop="5dp"
         android:layout_alignParentLeft="true"
-        android:inputType="text"/>
+        android:inputType="text" />
 
 </merge>
