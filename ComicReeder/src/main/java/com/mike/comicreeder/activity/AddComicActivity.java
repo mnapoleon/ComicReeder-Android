@@ -1,5 +1,6 @@
 package com.mike.comicreeder.activity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.app.Activity;
@@ -9,6 +10,7 @@ import android.support.v4.app.NavUtils;
 import android.annotation.TargetApi;
 import android.os.Build;
 import android.view.View;
+import android.widget.Toast;
 
 import com.mike.comicreeder.R;
 import com.mike.comicreeder.components.FloatingLabelEditText;
@@ -38,6 +40,7 @@ public class AddComicActivity extends Activity {
     comic.put("publisher", publisherText.getTextFieldValue().toString());
 
     comic.saveInBackground();
+    comicSavedToast();
 
     Intent intent = new Intent(this, ComicReederActivity.class);
     startActivity(intent);
@@ -76,6 +79,16 @@ public class AddComicActivity extends Activity {
         return true;
     }
     return super.onOptionsItemSelected(item);
+  }
+
+  private void comicSavedToast() {
+    Context context = getApplicationContext();
+    CharSequence text = "Comic saved!";
+
+    int duration = Toast.LENGTH_SHORT;
+    Toast toast = Toast.makeText(context, text, duration);
+    toast.show();
+
   }
 
 }
