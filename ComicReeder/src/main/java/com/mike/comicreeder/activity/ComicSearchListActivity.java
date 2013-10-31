@@ -1,6 +1,7 @@
 package com.mike.comicreeder.activity;
 
 import android.app.ListActivity;
+import android.content.Context;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -9,6 +10,7 @@ import android.annotation.TargetApi;
 import android.os.Build;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.mike.comicreeder.R;
 import com.mike.comicreeder.model.Comic;
@@ -26,16 +28,14 @@ public class ComicSearchListActivity extends ListActivity {
 
     ArrayList<Comic> comicList= getIntent().getParcelableArrayListExtra("comicData");
     if (comicList == null || comicList.size() == 0) {
-      ViewGroup comicListLayout = (ViewGroup)findViewById(R.id.comic_list_layout);
-      TextView zeroResultsTV = new TextView(ComicSearchListActivity.this);
-      zeroResultsTV.setText("No results found");
-
-      comicListLayout.addView(zeroResultsTV);
+      searchResultsToast(0);
     }
     else {
       ComicAdapter adapter = new ComicAdapter(this, R.layout.comic_list_item, comicList);
       setListAdapter(adapter);
+      searchResultsToast(comicList.size());
     }
+
   }
 
   /**
@@ -71,6 +71,15 @@ public class ComicSearchListActivity extends ListActivity {
         return true;
     }
     return super.onOptionsItemSelected(item);
+  }
+
+  private void searchResultsToast(int numberOfComicsFound) {
+    Context context = getApplicationContext();
+    CharSequence text = "Search found " + numberOfComicsFound + " comics!";
+
+    int duration = Toast.LENGTH_SHORT;
+    Toast toast = Toast.makeText(context, text, duration);
+    toast.show();
   }
 
 }
