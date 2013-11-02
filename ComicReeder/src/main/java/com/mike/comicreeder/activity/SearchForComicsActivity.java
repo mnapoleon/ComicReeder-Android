@@ -23,7 +23,16 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class SearchForComicsActivity extends Activity {
+import roboguice.activity.RoboActivity;
+import roboguice.inject.ContentView;
+import roboguice.inject.InjectView;
+
+@ContentView(R.layout.search_comics_activity)
+public class SearchForComicsActivity extends RoboActivity {
+
+  @InjectView(R.id.comicNameSearch) FloatingLabelEditText comicName;
+  @InjectView(R.id.publisherSearch) FloatingLabelEditText publisherName;
+  @InjectView(R.id.writerSearch)    FloatingLabelEditText writerName;
 
   private class RemoteSearchTask extends AsyncTask<Map<String, String>, Void, Void> {
 
@@ -69,7 +78,7 @@ public class SearchForComicsActivity extends Activity {
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    setContentView(R.layout.search_comics_activity);
+
     // Show the Up button in the action bar.
     setupActionBar();
   }
@@ -112,9 +121,6 @@ public class SearchForComicsActivity extends Activity {
   public void searchForComics(View view) {
 
     Map<String, String> searchParams = new HashMap<String, String>();
-    FloatingLabelEditText comicName = (FloatingLabelEditText) findViewById(R.id.comicNameSearch);
-    FloatingLabelEditText writerName = (FloatingLabelEditText) findViewById(R.id.writerSearch);
-    FloatingLabelEditText publisherName = (FloatingLabelEditText) findViewById(R.id.publisherSearch);
 
     if (comicName.getTextFieldValue() != null && comicName.getTextFieldValue().toString().trim().length() > 0) {
       searchParams.put("comicName", comicName.getTextField().getText().toString().trim());

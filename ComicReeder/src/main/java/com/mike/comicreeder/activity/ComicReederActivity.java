@@ -10,35 +10,38 @@ import com.mike.comicreeder.R;
 import com.parse.Parse;
 import com.parse.ParseAnalytics;
 
-
 public class ComicReederActivity extends Activity {
+
   private static String PARSE_APP_ID = "uKoPYsEPCuxyfZT3M5lyTytsiyZij0RHCSY1VuZ4";
   private static String PARSE_CLIENT_ID = "G1lqqnyoKiwTLOWj50ZWNoRcVIm25jN5IMAgtzxd";
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
 
-      Parse.initialize(this, PARSE_APP_ID, PARSE_CLIENT_ID);
+  @Override
+  protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setContentView(R.layout.activity_main);
 
-      ParseAnalytics.trackAppOpened(getIntent());
-      super.onCreate(savedInstanceState);
-      setContentView(R.layout.activity_main);
-    }
+    initializeParse();
+  }
 
-    public void addComic(View view) {
-      Intent intent = new Intent(this, AddComicActivity.class);
-      startActivity(intent);
-    }
+  public void addComic(View view) {
+    Intent intent = new Intent(this, AddComicActivity.class);
+    startActivity(intent);
+  }
 
-    public void searchForComics(View view) {
-      Intent intent = new Intent(this, SearchForComicsActivity.class);
-      startActivity(intent);
-    }
+  public void searchForComics(View view) {
+    Intent intent = new Intent(this, SearchForComicsActivity.class);
+    startActivity(intent);
+  }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.comic_reeder, menu);
-        return true;
-    }
-    
+  @Override
+  public boolean onCreateOptionsMenu(Menu menu) {
+    // Inflate the menu; this adds items to the action bar if it is present.
+    getMenuInflater().inflate(R.menu.comic_reeder, menu);
+    return true;
+  }
+
+  private void initializeParse() {
+    Parse.initialize(this, PARSE_APP_ID, PARSE_CLIENT_ID);
+    ParseAnalytics.trackAppOpened(getIntent());
+  }
 }

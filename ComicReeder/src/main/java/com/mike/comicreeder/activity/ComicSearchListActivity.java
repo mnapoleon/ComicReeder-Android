@@ -8,8 +8,6 @@ import android.view.MenuItem;
 import android.support.v4.app.NavUtils;
 import android.annotation.TargetApi;
 import android.os.Build;
-import android.view.ViewGroup;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.mike.comicreeder.R;
@@ -73,6 +71,11 @@ public class ComicSearchListActivity extends ListActivity {
     return super.onOptionsItemSelected(item);
   }
 
+  /**
+   * Used to display a 'toast' message to user to indicate number of
+   * comics found in the search.
+   * @param numberOfComicsFound number of comics found
+   */
   private void searchResultsToast(int numberOfComicsFound) {
     Context context = getApplicationContext();
     CharSequence text = "Search found " + numberOfComicsFound + " comics!";

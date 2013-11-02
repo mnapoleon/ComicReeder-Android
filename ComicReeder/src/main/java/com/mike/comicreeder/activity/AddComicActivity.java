@@ -16,22 +16,27 @@ import com.mike.comicreeder.R;
 import com.mike.comicreeder.components.FloatingLabelEditText;
 import com.parse.ParseObject;
 
-public class AddComicActivity extends Activity {
+import roboguice.activity.RoboActivity;
+import roboguice.inject.ContentView;
+import roboguice.inject.InjectView;
+
+@ContentView(R.layout.activity_add_comic)
+public class AddComicActivity extends RoboActivity {
+
+  @InjectView(R.id.comicName) FloatingLabelEditText comicNameText;
+  @InjectView(R.id.writer)    FloatingLabelEditText writerText;
+  @InjectView(R.id.issueNum)  FloatingLabelEditText issueNumberText;
+  @InjectView(R.id.publisher) FloatingLabelEditText publisherText;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    setContentView(R.layout.activity_add_comic);
+
     // Show the Up button in the action bar.
     setupActionBar();
   }
 
   public void addComic(View view) {
-
-    FloatingLabelEditText comicNameText = (FloatingLabelEditText) findViewById(R.id.comicName);
-    FloatingLabelEditText writerText = (FloatingLabelEditText) findViewById(R.id.writer);
-    FloatingLabelEditText issueNumberText = (FloatingLabelEditText) findViewById(R.id.issueNum);
-    FloatingLabelEditText publisherText = (FloatingLabelEditText) findViewById(R.id.publisher);
 
     ParseObject comic = new ParseObject("Comics");
     comic.put("comicName", comicNameText.getTextFieldValue().toString());
@@ -81,6 +86,10 @@ public class AddComicActivity extends Activity {
     return super.onOptionsItemSelected(item);
   }
 
+  /**
+   * Used to display a 'toast' message to the user to let
+   * them know the save was saved.
+   */
   private void comicSavedToast() {
     Context context = getApplicationContext();
     CharSequence text = "Comic saved!";

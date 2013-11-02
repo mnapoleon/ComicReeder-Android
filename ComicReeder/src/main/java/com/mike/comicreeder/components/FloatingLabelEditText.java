@@ -49,7 +49,6 @@ public class FloatingLabelEditText extends LinearLayout {
 
       @Override
       public void onTextChanged(CharSequence s, int start, int before, int count) {
-        //TextView textView = (TextView) findViewById(R.id.floatingLabel);
         if (s.length() == 0) {
           label.setText("");
         } else if (s.length() == 1) {
