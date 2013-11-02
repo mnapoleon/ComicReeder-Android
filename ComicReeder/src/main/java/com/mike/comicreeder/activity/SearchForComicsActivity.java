@@ -3,7 +3,6 @@ package com.mike.comicreeder.activity;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.app.Activity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.support.v4.app.NavUtils;
@@ -14,9 +13,8 @@ import android.view.View;
 import com.mike.comicreeder.R;
 import com.mike.comicreeder.components.FloatingLabelEditText;
 import com.mike.comicreeder.model.Comic;
-import com.parse.ParseException;
+import com.mike.comicreeder.remote.ComicReederSearchTask;
 import com.parse.ParseObject;
-import com.parse.ParseQuery;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -34,39 +32,18 @@ public class SearchForComicsActivity extends RoboActivity {
   @InjectView(R.id.publisherSearch) FloatingLabelEditText publisherName;
   @InjectView(R.id.writerSearch)    FloatingLabelEditText writerName;
 
-  private class RemoteSearchTask extends AsyncTask<Map<String, String>, Void, Void> {
+  private class RemoteSearchTask extends AsyncTask<Map<String, String>, Void, List<ParseObject>> {
 
-    private List<ParseObject> queryResults;
+    private ComicReederSearchTask searchTask = new ComicReederSearchTask();
 
     @Override
-    protected Void doInBackground(Map<String, String>... params) {
-      ParseQuery<ParseObject> query = new ParseQuery<ParseObject>("Comics");
-      Map<String, String> onlyParams = params[0];
-      for (String key : onlyParams.keySet()) {
-        query.whereEqualTo(key, onlyParams.get(key));
-      }
-      query.orderByAscending("comicName");
-      query.addAscendingOrder("issue");
-      try {
-        queryResults = query.find();
-      } catch (ParseException e) {
-
-      }
-      return null;
+    protected List<ParseObject> doInBackground(Map<String, String>... params) {
+      return searchTask.searchForComics(params[0]);
     }
 
     @Override
-    protected void onPostExecute(Void result) {
-      ArrayList<Comic> comicList = new ArrayList<Comic>();
-      for (ParseObject queryResult : queryResults) {
-        Comic comic = new Comic();
-        comic.setObjectId(queryResult.getObjectId());
-        comic.setWriter(queryResult.getString("writer"));
-        comic.setComicName(queryResult.getString("comicName"));
-        comic.setIssueNumber(queryResult.getInt("issue"));
-        comic.setPublisher(queryResult.getString("publisher"));
-        comicList.add(comic);
-      }
+    protected void onPostExecute(List<ParseObject> result) {
+      ArrayList<Comic> comicList = searchTask.getComicList(result);
 
       Intent intent = new Intent(SearchForComicsActivity.this, ComicSearchListActivity.class);
       intent.putParcelableArrayListExtra("comicData", comicList);
@@ -118,6 +95,10 @@ public class SearchForComicsActivity extends RoboActivity {
     return super.onOptionsItemSelected(item);
   }
 
+  /**
+   * Sets up the search criteria before executing the remote task.
+   * @param view
+   */
   public void searchForComics(View view) {
 
     Map<String, String> searchParams = new HashMap<String, String>();
