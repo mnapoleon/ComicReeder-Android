@@ -4,9 +4,10 @@ import android.test.ActivityInstrumentationTestCase2;
 import android.test.ViewAsserts;
 import android.test.suitebuilder.annotation.SmallTest;
 import android.view.View;
-import android.widget.EditText;
+import android.widget.Button;
 
 import com.mike.comicreeder.R;
+import com.mike.comicreeder.components.FloatingLabelEditText;
 
 
 /**
@@ -16,10 +17,11 @@ public class AddComicActivityTest extends ActivityInstrumentationTestCase2<AddCo
 
   AddComicActivity addComicActivity;
 
-  EditText comicName;
-  EditText writerName;
-  EditText issueNumber;
-  EditText publisherName;
+  FloatingLabelEditText comicName;
+  FloatingLabelEditText writerName;
+  FloatingLabelEditText issueNumber;
+  FloatingLabelEditText publisherName;
+  Button addButton;
 
   public AddComicActivityTest() {
     super(AddComicActivity.class);
@@ -32,11 +34,11 @@ public class AddComicActivityTest extends ActivityInstrumentationTestCase2<AddCo
     setActivityInitialTouchMode(true);
     addComicActivity = getActivity();
 
-    comicName = (EditText) addComicActivity.findViewById(R.id.comicName);
-    writerName = (EditText) addComicActivity.findViewById(R.id.writer);
-    issueNumber = (EditText) addComicActivity.findViewById(R.id.issueNum);
-    publisherName = (EditText) addComicActivity.findViewById(R.id.publisher);
-
+    comicName = (FloatingLabelEditText) addComicActivity.findViewById(R.id.comicName);
+    writerName = (FloatingLabelEditText) addComicActivity.findViewById(R.id.writer);
+    issueNumber = (FloatingLabelEditText) addComicActivity.findViewById(R.id.issueNum);
+    publisherName = (FloatingLabelEditText) addComicActivity.findViewById(R.id.publisher);
+    addButton = (Button) addComicActivity.findViewById(R.id.add_comic_button);
   }
 
   @SmallTest
@@ -47,5 +49,6 @@ public class AddComicActivityTest extends ActivityInstrumentationTestCase2<AddCo
     ViewAsserts.assertOnScreen(decorView, writerName);
     ViewAsserts.assertOnScreen(decorView, issueNumber);
     ViewAsserts.assertOnScreen(decorView, publisherName);
+    ViewAsserts.assertOnScreen(decorView, addButton);
   }
 }
