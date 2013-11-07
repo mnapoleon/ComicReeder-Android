@@ -8,6 +8,9 @@ import android.view.MenuItem;
 import android.support.v4.app.NavUtils;
 import android.annotation.TargetApi;
 import android.os.Build;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ListView;
 import android.widget.Toast;
 
 import com.mike.comicreeder.R;
@@ -34,6 +37,14 @@ public class ComicSearchListActivity extends ListActivity {
       searchResultsToast(comicList.size());
     }
 
+    ListView lv = getListView();
+
+    lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+      @Override
+      public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        selectComic(view);
+      }
+    });
   }
 
   /**
@@ -52,7 +63,6 @@ public class ComicSearchListActivity extends ListActivity {
     getMenuInflater().inflate(R.menu.comic_search_list, menu);
     return true;
   }
-
 
   @Override
   public boolean onOptionsItemSelected(MenuItem item) {
@@ -85,4 +95,12 @@ public class ComicSearchListActivity extends ListActivity {
     toast.show();
   }
 
+  public void selectComic(View view) {
+    Context context = getApplicationContext();
+    CharSequence text = "Select a comic";
+
+    int duration = Toast.LENGTH_SHORT;
+    Toast toast = Toast.makeText(context, text, duration);
+    toast.show();
+  }
 }
