@@ -40,6 +40,7 @@ public class ComicReederSearchTask {
       comic.setComicName(result.getString("comicName"));
       comic.setIssueNumber(result.getInt("issue"));
       comic.setPublisher(result.getString("publisher"));
+      comic.setSmallIconUrl(result.getString("smallIconUrl"));
       comicList.add(comic);
     }
     return comicList;

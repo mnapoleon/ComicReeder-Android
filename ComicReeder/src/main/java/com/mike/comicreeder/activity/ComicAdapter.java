@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+import com.loopj.android.image.SmartImageView;
 import com.mike.comicreeder.R;
 import com.mike.comicreeder.model.Comic;
 
@@ -41,13 +42,13 @@ public class ComicAdapter extends ArrayAdapter<Comic> {
 
       // This is how you obtain a reference to the TextViews.
       // These TextViews are created in the XML files we defined.
-
       TextView tt = (TextView) view.findViewById(R.id.toptext);
       TextView ttd = (TextView) view.findViewById(R.id.toptextdata);
       TextView mt = (TextView) view.findViewById(R.id.middletext);
       TextView mtd = (TextView) view.findViewById(R.id.middletextdata);
       TextView bt = (TextView) view.findViewById(R.id.bottomtext);
       TextView btd = (TextView) view.findViewById(R.id.desctext);
+      SmartImageView smartImageView = (SmartImageView) view.findViewById(R.id.smallIcon);
 
       // check to see if each individual textview is null.
       // if not, assign some text!
@@ -68,6 +69,9 @@ public class ComicAdapter extends ArrayAdapter<Comic> {
       }
       if (btd != null){
         btd.setText(String.valueOf(i.getIssueNumber()));
+      }
+      if (smartImageView != null) {
+        smartImageView.setImageUrl(i.getSmallIconUrl());
       }
     }
 

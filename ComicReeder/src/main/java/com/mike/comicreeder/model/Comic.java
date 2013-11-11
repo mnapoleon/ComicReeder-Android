@@ -12,6 +12,7 @@ public class Comic implements Parcelable {
   private String comicName;
   private String writer;
   private String publisher;
+  private String smallIconUrl;
   private int issueNumber;
 
   public Comic(){};
@@ -22,6 +23,7 @@ public class Comic implements Parcelable {
     writer = in.readString();
     publisher = in.readString();
     issueNumber = in.readInt();
+    smallIconUrl = in.readString();
   }
 
   public String getObjectId() {
@@ -64,6 +66,10 @@ public class Comic implements Parcelable {
     this.comicName = comicName;
   }
 
+  public String getSmallIconUrl() { return this.smallIconUrl; }
+
+  public void setSmallIconUrl(String smallIconUrl) { this.smallIconUrl = smallIconUrl; }
+
   @Override
   public int describeContents() {
     return 0;
@@ -76,6 +82,7 @@ public class Comic implements Parcelable {
     dest.writeString(writer);
     dest.writeString(publisher);
     dest.writeInt(issueNumber);
+    dest.writeString(smallIconUrl);
 
   }
 

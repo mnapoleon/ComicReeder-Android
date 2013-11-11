@@ -1,95 +1,103 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginBottom="5dp">
 
 
+  <com.loopj.android.image.SmartImageView
+    android:id="@+id/smallIcon"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"/>
+
+  <RelativeLayout
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent">
   <!-- Item Name -->
-  <TextView
-      android:id="@+id/toptext"
+    <TextView
+        android:id="@+id/toptext"
 
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
 
-      android:layout_alignParentTop="true"
-      android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
 
-      android:textStyle="bold"
-      android:singleLine="true"
-      android:ellipsize="marquee"
-      />
+        android:textStyle="bold"
+        android:singleLine="true"
+        android:ellipsize="marquee"
+        />
 
-  <!-- Actual Item Name Data -->
-  <TextView
-      android:id="@+id/toptextdata"
+    <!-- Actual Item Name Data -->
+    <TextView
+        android:id="@+id/toptextdata"
 
-      android:layout_width="fill_parent"
-      android:layout_height="wrap_content"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
 
-      android:layout_alignParentRight="true"
-      android:layout_alignParentTop="true"
-      android:layout_toRightOf="@id/toptext"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@id/toptext"
 
-      android:singleLine="true"
-      android:ellipsize="marquee"
-      style="@style/ComicName"
-      />
+        android:singleLine="true"
+        android:ellipsize="marquee"
+        style="@style/ComicName"
+        />
 
-  <!-- Price Tag -->
-  <TextView
-      android:id="@+id/middletext"
+    <!-- Price Tag -->
+    <TextView
+        android:id="@+id/middletext"
 
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
 
-      android:layout_alignParentLeft="true"
-      android:layout_below="@id/toptext"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@id/toptext"
 
-      android:textStyle="bold"
-      android:gravity="center_vertical"
-      />
+        android:textStyle="bold"
+        android:gravity="center_vertical"
+        />
 
-  <!-- Actual Price Data -->
-  <TextView
-      android:id="@+id/middletextdata"
+    <!-- Actual Price Data -->
+    <TextView
+        android:id="@+id/middletextdata"
 
-      android:layout_width="fill_parent"
-      android:layout_height="wrap_content"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
 
-      android:layout_alignParentRight="true"
-      android:layout_below="@id/toptext"
-      android:layout_toRightOf="@id/middletext"
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/toptext"
+        android:layout_toRightOf="@id/middletext"
 
-      android:gravity="center_vertical"
-      />
+        android:gravity="center_vertical"
+        />
 
-  <!-- Description Tag -->
-  <TextView
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
+    <!-- Description Tag -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
 
-      android:layout_alignParentLeft="true"
-      android:layout_alignParentBottom="true"
-      android:layout_below="@id/middletext"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentBottom="true"
+        android:layout_below="@id/middletext"
 
-      android:textStyle="bold"
-      android:id="@+id/bottomtext"
-      android:singleLine="true"
-      />
-  <!-- This is the actual description -->
-  <TextView
-      android:layout_width="fill_parent"
-      android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:id="@+id/bottomtext"
+        android:singleLine="true"
+        />
+    <!-- This is the actual description -->
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
 
-      android:layout_alignParentRight="true"
-      android:layout_alignParentBottom="true"
-      android:layout_below="@id/middletext"
-      android:layout_toRightOf="@id/bottomtext"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_below="@id/middletext"
+        android:layout_toRightOf="@id/bottomtext"
 
-      android:id="@+id/desctext"
-      android:singleLine="true"
-      />
-
-</RelativeLayout>
+        android:id="@+id/desctext"
+        android:singleLine="true"
+        />
+  </RelativeLayout>
+</LinearLayout>
