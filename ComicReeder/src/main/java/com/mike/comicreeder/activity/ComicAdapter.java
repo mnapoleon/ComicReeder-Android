@@ -2,12 +2,16 @@ package com.mike.comicreeder.activity;
 
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+import com.loopj.android.image.BitmapImage;
+import com.loopj.android.image.SmartImage;
 import com.loopj.android.image.SmartImageView;
 import com.mike.comicreeder.R;
 import com.mike.comicreeder.model.Comic;
@@ -50,6 +54,10 @@ public class ComicAdapter extends ArrayAdapter<Comic> {
       TextView btd = (TextView) view.findViewById(R.id.desctext);
       SmartImageView smartImageView = (SmartImageView) view.findViewById(R.id.smallIcon);
 
+      Bitmap icon = BitmapFactory.decodeResource(getContext().getResources(), R.drawable.empty);
+      BitmapImage iconSmartImage = new BitmapImage(icon);
+
+
       // check to see if each individual textview is null.
       // if not, assign some text!
       if (tt != null){
@@ -71,7 +79,12 @@ public class ComicAdapter extends ArrayAdapter<Comic> {
         btd.setText(String.valueOf(i.getIssueNumber()));
       }
       if (smartImageView != null) {
-        smartImageView.setImageUrl(i.getSmallIconUrl());
+        if (i.getSmallIconUrl() != null) {
+          smartImageView.setImageUrl(i.getSmallIconUrl());
+        }
+        else {
+          smartImageView.setImage(iconSmartImage);
+        }
       }
     }
 

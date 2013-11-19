@@ -1,99 +1,89 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginBottom="5dp">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="fill_parent"
+              android:layout_height="fill_parent"
+              android:padding="5dip">
 
-  <!-- Item Name -->
-  <TextView
+  <com.loopj.android.image.SmartImageView
+    android:id="@+id/smallIcon"
+    android:layout_width="wrap_content"
+    android:layout_height="fill_parent"
+    android:layout_marginRight="5dip"
+    />
+
+  <LinearLayout
+    android:layout_width="0dip"
+    android:layout_weight="1"
+    android:layout_height="fill_parent"
+    android:orientation="vertical">
+    <!-- Item Name -->
+    <TextView
       android:id="@+id/toptext"
 
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-
-      android:layout_alignParentTop="true"
-      android:layout_alignParentLeft="true"
+      android:layout_width="fill_parent"
+      android:layout_height="0dip"
+      android:layout_weight="1"
 
       android:textStyle="bold"
       android:singleLine="true"
       android:ellipsize="marquee"
       />
 
-  <!-- Actual Item Name Data -->
-  <TextView
+    <!-- Actual Item Name Data -->
+    <TextView
       android:id="@+id/toptextdata"
 
       android:layout_width="fill_parent"
-      android:layout_height="wrap_content"
-
-      android:layout_alignParentRight="true"
-      android:layout_alignParentTop="true"
-      android:layout_toRightOf="@id/toptext"
+      android:layout_height="0dip"
+      android:layout_weight="1"
 
       android:singleLine="true"
       android:ellipsize="marquee"
       style="@style/ComicName"
       />
 
-  <!-- Price Tag -->
-  <TextView
+    <!-- Price Tag -->
+    <TextView
       android:id="@+id/middletext"
 
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-
-      android:layout_alignParentLeft="true"
-      android:layout_below="@id/toptext"
+      android:layout_width="fill_parent"
+      android:layout_height="0dip"
+      android:layout_weight="1"
 
       android:textStyle="bold"
       android:gravity="center_vertical"
       />
 
-  <!-- Actual Price Data -->
-  <TextView
+    <!-- Actual Price Data -->
+    <TextView
       android:id="@+id/middletextdata"
 
       android:layout_width="fill_parent"
-      android:layout_height="wrap_content"
-
-      android:layout_alignParentRight="true"
-      android:layout_below="@id/toptext"
-      android:layout_toRightOf="@id/middletext"
+      android:layout_height="0dip"
+      android:layout_weight="1"
 
       android:gravity="center_vertical"
       />
 
-  <!-- Description Tag -->
-  <TextView
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-
-      android:layout_alignParentLeft="true"
-      android:layout_below="@id/middletext"
+    <!-- Description Tag -->
+    <TextView
+      android:layout_width="fill_parent"
+      android:layout_height="0dip"
+      android:layout_weight="1"
 
       android:textStyle="bold"
       android:id="@+id/bottomtext"
       android:singleLine="true"
       />
-  <!-- This is the actual description -->
-  <TextView
+    <!-- This is the actual description -->
+    <TextView
       android:layout_width="fill_parent"
-      android:layout_height="wrap_content"
-
-      android:layout_alignParentRight="true"
-      android:layout_below="@id/middletext"
-      android:layout_toRightOf="@id/bottomtext"
+      android:layout_height="0dip"
+      android:layout_weight="1"
 
       android:id="@+id/desctext"
       android:singleLine="true"
       />
-  <com.loopj.android.image.SmartImageView
-    android:id="@+id/smallIcon"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_below="@id/bottomtext"
-    android:layout_alignParentRight="true"
-    android:layout_alignParentTop="true"
-    />
-</RelativeLayout>
+  </LinearLayout>
+</LinearLayout>
