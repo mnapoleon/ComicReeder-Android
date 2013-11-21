@@ -11,7 +11,6 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import com.loopj.android.image.BitmapImage;
-import com.loopj.android.image.SmartImage;
 import com.loopj.android.image.SmartImageView;
 import com.mike.comicreeder.R;
 import com.mike.comicreeder.model.Comic;
@@ -37,46 +36,29 @@ public class ComicAdapter extends ArrayAdapter<Comic> {
     if (view == null) {
       LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
       view = inflater.inflate(R.layout.comic_list_item, null);
-
     }
 
     Comic i = comics.get(position);
 
     if (i != null) {
-
-      // This is how you obtain a reference to the TextViews.
-      // These TextViews are created in the XML files we defined.
-      TextView tt = (TextView) view.findViewById(R.id.toptext);
-      TextView ttd = (TextView) view.findViewById(R.id.toptextdata);
-      TextView mt = (TextView) view.findViewById(R.id.middletext);
-      TextView mtd = (TextView) view.findViewById(R.id.middletextdata);
-      TextView bt = (TextView) view.findViewById(R.id.bottomtext);
-      TextView btd = (TextView) view.findViewById(R.id.desctext);
+      TextView comicNameTV = (TextView) view.findViewById(R.id.result_comic_name);
+      TextView writerTV = (TextView) view.findViewById(R.id.result_writer);
+      TextView issueNumberTV = (TextView) view.findViewById(R.id.result_issue_number);
       SmartImageView smartImageView = (SmartImageView) view.findViewById(R.id.smallIcon);
+
+      Context context = getContext();
 
       Bitmap icon = BitmapFactory.decodeResource(getContext().getResources(), R.drawable.empty);
       BitmapImage iconSmartImage = new BitmapImage(icon);
 
-
-      // check to see if each individual textview is null.
-      // if not, assign some text!
-      if (tt != null){
-        tt.setText("Comic: ");
+      if (comicNameTV != null){
+        comicNameTV.setText(getStrings(context, R.string.result_comic_name_label) + " " + i.getComicName());
       }
-      if (ttd != null){
-        ttd.setText(i.getComicName());
+      if (writerTV != null){
+        writerTV.setText(getStrings(context, R.string.result_writer_label) + " " + i.getWriter());
       }
-      if (mt != null){
-        mt.setText("Author: ");
-      }
-      if (mtd != null){
-        mtd.setText(i.getWriter());
-      }
-      if (bt != null){
-        bt.setText("Issue # ");
-      }
-      if (btd != null){
-        btd.setText(String.valueOf(i.getIssueNumber()));
+      if (issueNumberTV != null){
+        issueNumberTV.setText(getStrings(context, R.string.result_issue_num_label) + " " + String.valueOf(i.getIssueNumber()));
       }
       if (smartImageView != null) {
         if (i.getSmallIconUrl() != null) {
@@ -87,8 +69,16 @@ public class ComicAdapter extends ArrayAdapter<Comic> {
         }
       }
     }
-
-    // the view must be returned to our activity
     return view;
+  }
+
+  /**
+   * Gets string value from resources
+   * @param context
+   * @param RString
+   * @return
+   */
+  String getStrings(Context context, int RString) {
+    return context.getResources().getString(RString);
   }
 }

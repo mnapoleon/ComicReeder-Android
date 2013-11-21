@@ -52,10 +52,12 @@ public class ComicAdapterTest extends AndroidTestCase {
   public void testGetView() {
     View view = adapter.getView(0, null, null);
 
-    TextView topText = (TextView)view.findViewById(R.id.toptextdata);
+    TextView comicNameTV = (TextView)view.findViewById(R.id.result_comic_name);
+
+    String comicNamePrefix = getContext().getResources().getString(R.string.result_comic_name_label) + " ";
 
     assertNotNull(view);
-    assertNotNull(topText);
-    assertEquals("Comic name should be Comic1", comic1.getComicName(), topText.getText());
+    assertNotNull(comicNameTV);
+    assertEquals("Comic name should be Comic1", comicNamePrefix + comic1.getComicName(), comicNameTV.getText());
   }
 }

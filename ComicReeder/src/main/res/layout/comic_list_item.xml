@@ -17,73 +17,29 @@
     android:layout_weight="1"
     android:layout_height="fill_parent"
     android:orientation="vertical">
-    <!-- Item Name -->
-    <TextView
-      android:id="@+id/toptext"
 
+    <!-- Comic Name -->
+    <TextView
+      android:id="@+id/result_comic_name"
       android:layout_width="fill_parent"
       android:layout_height="0dip"
       android:layout_weight="1"
-
-      android:textStyle="bold"
-      android:singleLine="true"
-      android:ellipsize="marquee"
       />
 
-    <!-- Actual Item Name Data -->
+    <!-- Writer -->
     <TextView
-      android:id="@+id/toptextdata"
-
+      android:id="@+id/result_writer"
       android:layout_width="fill_parent"
       android:layout_height="0dip"
       android:layout_weight="1"
-
-      android:singleLine="true"
-      android:ellipsize="marquee"
-      style="@style/ComicName"
       />
 
-    <!-- Price Tag -->
+    <!-- Issue No. -->
     <TextView
-      android:id="@+id/middletext"
-
+      android:id="@+id/result_issue_number"
       android:layout_width="fill_parent"
       android:layout_height="0dip"
       android:layout_weight="1"
-
-      android:textStyle="bold"
-      android:gravity="center_vertical"
-      />
-
-    <!-- Actual Price Data -->
-    <TextView
-      android:id="@+id/middletextdata"
-
-      android:layout_width="fill_parent"
-      android:layout_height="0dip"
-      android:layout_weight="1"
-
-      android:gravity="center_vertical"
-      />
-
-    <!-- Description Tag -->
-    <TextView
-      android:layout_width="fill_parent"
-      android:layout_height="0dip"
-      android:layout_weight="1"
-
-      android:textStyle="bold"
-      android:id="@+id/bottomtext"
-      android:singleLine="true"
-      />
-    <!-- This is the actual description -->
-    <TextView
-      android:layout_width="fill_parent"
-      android:layout_height="0dip"
-      android:layout_weight="1"
-
-      android:id="@+id/desctext"
-      android:singleLine="true"
       />
   </LinearLayout>
 </LinearLayout>
