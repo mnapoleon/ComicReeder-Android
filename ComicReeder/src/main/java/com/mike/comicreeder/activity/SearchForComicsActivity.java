@@ -13,6 +13,7 @@ import android.view.View;
 import com.mike.comicreeder.R;
 import com.mike.comicreeder.components.FloatingLabelEditText;
 import com.mike.comicreeder.model.Comic;
+import com.mike.comicreeder.model.ParseComics;
 import com.mike.comicreeder.remote.ComicReederSearchTask;
 import com.parse.ParseObject;
 
@@ -26,7 +27,7 @@ import roboguice.inject.ContentView;
 import roboguice.inject.InjectView;
 
 @ContentView(R.layout.search_comics_activity)
-public class SearchForComicsActivity extends RoboActivity {
+public class SearchForComicsActivity extends RoboActivity implements ParseComics {
 
   @InjectView(R.id.comicNameSearch) FloatingLabelEditText comicName;
   @InjectView(R.id.publisherSearch) FloatingLabelEditText publisherName;
@@ -104,13 +105,13 @@ public class SearchForComicsActivity extends RoboActivity {
     Map<String, String> searchParams = new HashMap<String, String>();
 
     if (comicName.getTextFieldValue() != null && comicName.getTextFieldValue().toString().trim().length() > 0) {
-      searchParams.put("comicName", comicName.getTextField().getText().toString().trim());
+      searchParams.put(COLUMN_COMIC_NAME, comicName.getTextField().getText().toString().trim());
     }
     if (writerName.getTextFieldValue()!= null && writerName.getTextFieldValue().toString().trim().length() > 0) {
-      searchParams.put("writer", writerName.getTextField().getText().toString().trim());
+      searchParams.put(COLUMN_WRITER, writerName.getTextField().getText().toString().trim());
     }
     if (publisherName.getTextFieldValue()!= null && publisherName.getTextFieldValue().toString().trim().length() > 0) {
-      searchParams.put("publisher", publisherName.getTextField().getText().toString().trim());
+      searchParams.put(COLUMN_PUBLISHER, publisherName.getTextField().getText().toString().trim());
     }
     new RemoteSearchTask().execute(searchParams);
   }

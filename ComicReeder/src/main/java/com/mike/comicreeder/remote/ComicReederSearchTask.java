@@ -1,6 +1,7 @@
 package com.mike.comicreeder.remote;
 
 import com.mike.comicreeder.model.Comic;
+import com.mike.comicreeder.model.ParseComics;
 import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
@@ -12,17 +13,16 @@ import java.util.Map;
 /**
  * Created by michaelnapoleon on 11/1/13.
  */
-public class ComicReederSearchTask {
-
+public class ComicReederSearchTask implements ParseComics {
 
   public List<ParseObject> searchForComics(Map<String, String> searchParams) {
     List<ParseObject> queryResults = null;
-    ParseQuery<ParseObject> query = new ParseQuery<ParseObject>("Comics");
+    ParseQuery<ParseObject> query = new ParseQuery<ParseObject>(CLASS_COMICS);
     for (String key : searchParams.keySet()) {
       query.whereEqualTo(key, searchParams.get(key));
     }
-    query.orderByAscending("comicName");
-    query.addAscendingOrder("issue");
+    query.orderByAscending(COLUMN_COMIC_NAME);
+    query.addAscendingOrder(COLUMN_ISSUE);
     try {
       queryResults = query.find();
     } catch (ParseException e) {
@@ -36,11 +36,12 @@ public class ComicReederSearchTask {
     for (ParseObject result : results) {
       Comic comic = new Comic();
       comic.setObjectId(result.getObjectId());
-      comic.setWriter(result.getString("writer"));
-      comic.setComicName(result.getString("comicName"));
-      comic.setIssueNumber(result.getInt("issue"));
-      comic.setPublisher(result.getString("publisher"));
-      comic.setSmallIconUrl(result.getString("smallIconUrl"));
+      comic.setWriter(result.getString(COLUMN_WRITER));
+      comic.setComicName(result.getString(COLUMN_COMIC_NAME));
+      comic.setIssueNumber(result.getInt(COLUMN_ISSUE));
+      comic.setPublisher(result.getString(COLUMN_PUBLISHER));
+      comic.setSmallIconUrl(result.getString(COLUMN_SMALL_ICON_URL));
+      comic.setCoverImageUrl(result.getString(COLUMN_COVER_IMAGE_URL));
       comicList.add(comic);
     }
     return comicList;

@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import com.mike.comicreeder.R;
 import com.mike.comicreeder.components.FloatingLabelEditText;
+import com.mike.comicreeder.model.ParseComics;
 import com.parse.ParseObject;
 
 import roboguice.activity.RoboActivity;
@@ -20,7 +21,7 @@ import roboguice.inject.ContentView;
 import roboguice.inject.InjectView;
 
 @ContentView(R.layout.activity_add_comic)
-public class AddComicActivity extends RoboActivity {
+public class AddComicActivity extends RoboActivity implements ParseComics {
 
   @InjectView(R.id.comicName) FloatingLabelEditText comicNameText;
   @InjectView(R.id.writer)    FloatingLabelEditText writerText;
@@ -37,11 +38,11 @@ public class AddComicActivity extends RoboActivity {
 
   public void addComic(View view) {
 
-    ParseObject comic = new ParseObject("Comics");
-    comic.put("comicName", comicNameText.getTextFieldValue().toString());
-    comic.put("writer", writerText.getTextFieldValue().toString());
-    comic.put("issue", Integer.parseInt(issueNumberText.getTextFieldValue().toString()));
-    comic.put("publisher", publisherText.getTextFieldValue().toString());
+    ParseObject comic = new ParseObject(CLASS_COMICS);
+    comic.put(COLUMN_COMIC_NAME, comicNameText.getTextFieldValue().toString());
+    comic.put(COLUMN_WRITER, writerText.getTextFieldValue().toString());
+    comic.put(COLUMN_ISSUE, Integer.parseInt(issueNumberText.getTextFieldValue().toString()));
+    comic.put(COLUMN_PUBLISHER, publisherText.getTextFieldValue().toString());
 
     comic.saveInBackground();
     comicSavedToast();

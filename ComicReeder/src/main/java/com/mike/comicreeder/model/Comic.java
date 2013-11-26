@@ -13,6 +13,7 @@ public class Comic implements Parcelable {
   private String writer;
   private String publisher;
   private String smallIconUrl;
+  private String coverImageUrl;
   private int issueNumber;
 
   public Comic(){};
@@ -24,6 +25,8 @@ public class Comic implements Parcelable {
     publisher = in.readString();
     issueNumber = in.readInt();
     smallIconUrl = in.readString();
+    coverImageUrl = in.readString();
+
   }
 
   public String getObjectId() {
@@ -70,6 +73,14 @@ public class Comic implements Parcelable {
 
   public void setSmallIconUrl(String smallIconUrl) { this.smallIconUrl = smallIconUrl; }
 
+  public String getCoverImageUrl() {
+    return coverImageUrl;
+  }
+
+  public void setCoverImageUrl(String coverImageUrl) {
+    this.coverImageUrl = coverImageUrl;
+  }
+
   @Override
   public int describeContents() {
     return 0;
@@ -83,7 +94,7 @@ public class Comic implements Parcelable {
     dest.writeString(publisher);
     dest.writeInt(issueNumber);
     dest.writeString(smallIconUrl);
-
+    dest.writeString(coverImageUrl);
   }
 
   // this is used to regenerate your object. All Parcelables must have a CREATOR that implements these two methods
