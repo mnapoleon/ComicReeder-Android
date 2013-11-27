@@ -22,8 +22,8 @@ public class CoverImageActivity extends Activity {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_cover_image);
 
-    SmartImageView smartImageView = (SmartImageView) findViewById(R.id.cover_image_view);
-    smartImageView.setImageUrl(getIntent().getExtras().getString("coverImageUrl"));
+    SmartImageView mSmartImageView = (SmartImageView) findViewById(R.id.cover_image_view);
+    mSmartImageView.setImageUrl(getIntent().getExtras().getString("coverImageUrl"));
   }
 
 

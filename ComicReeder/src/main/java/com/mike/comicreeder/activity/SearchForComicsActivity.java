@@ -29,9 +29,9 @@ import roboguice.inject.InjectView;
 @ContentView(R.layout.search_comics_activity)
 public class SearchForComicsActivity extends RoboActivity implements ParseComics {
 
-  @InjectView(R.id.comicNameSearch) FloatingLabelEditText comicName;
-  @InjectView(R.id.publisherSearch) FloatingLabelEditText publisherName;
-  @InjectView(R.id.writerSearch)    FloatingLabelEditText writerName;
+  @InjectView(R.id.comicNameSearch) FloatingLabelEditText mComicName;
+  @InjectView(R.id.publisherSearch) FloatingLabelEditText mPublisherName;
+  @InjectView(R.id.writerSearch)    FloatingLabelEditText mWriterName;
 
   private class RemoteSearchTask extends AsyncTask<Map<String, String>, Void, List<ParseObject>> {
 
@@ -104,14 +104,14 @@ public class SearchForComicsActivity extends RoboActivity implements ParseComics
 
     Map<String, String> searchParams = new HashMap<String, String>();
 
-    if (comicName.getTextFieldValue() != null && comicName.getTextFieldValue().toString().trim().length() > 0) {
-      searchParams.put(COLUMN_COMIC_NAME, comicName.getTextField().getText().toString().trim());
+    if (mComicName.getTextFieldValue() != null && mComicName.getTextFieldValue().toString().trim().length() > 0) {
+      searchParams.put(COLUMN_COMIC_NAME, mComicName.getTextField().getText().toString().trim());
     }
-    if (writerName.getTextFieldValue()!= null && writerName.getTextFieldValue().toString().trim().length() > 0) {
-      searchParams.put(COLUMN_WRITER, writerName.getTextField().getText().toString().trim());
+    if (mWriterName.getTextFieldValue()!= null && mWriterName.getTextFieldValue().toString().trim().length() > 0) {
+      searchParams.put(COLUMN_WRITER, mWriterName.getTextField().getText().toString().trim());
     }
-    if (publisherName.getTextFieldValue()!= null && publisherName.getTextFieldValue().toString().trim().length() > 0) {
-      searchParams.put(COLUMN_PUBLISHER, publisherName.getTextField().getText().toString().trim());
+    if (mPublisherName.getTextFieldValue()!= null && mPublisherName.getTextFieldValue().toString().trim().length() > 0) {
+      searchParams.put(COLUMN_PUBLISHER, mPublisherName.getTextField().getText().toString().trim());
     }
     new RemoteSearchTask().execute(searchParams);
   }

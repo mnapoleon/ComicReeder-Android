@@ -23,10 +23,10 @@ import roboguice.inject.InjectView;
 @ContentView(R.layout.activity_add_comic)
 public class AddComicActivity extends RoboActivity implements ParseComics {
 
-  @InjectView(R.id.comicName) FloatingLabelEditText comicNameText;
-  @InjectView(R.id.writer)    FloatingLabelEditText writerText;
-  @InjectView(R.id.issueNum)  FloatingLabelEditText issueNumberText;
-  @InjectView(R.id.publisher) FloatingLabelEditText publisherText;
+  @InjectView(R.id.comicName) FloatingLabelEditText mComicNameText;
+  @InjectView(R.id.writer)    FloatingLabelEditText mWriterText;
+  @InjectView(R.id.issueNum)  FloatingLabelEditText mIssueNumberText;
+  @InjectView(R.id.publisher) FloatingLabelEditText mPublisherText;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -39,10 +39,10 @@ public class AddComicActivity extends RoboActivity implements ParseComics {
   public void addComic(View view) {
 
     ParseObject comic = new ParseObject(CLASS_COMICS);
-    comic.put(COLUMN_COMIC_NAME, comicNameText.getTextFieldValue().toString());
-    comic.put(COLUMN_WRITER, writerText.getTextFieldValue().toString());
-    comic.put(COLUMN_ISSUE, Integer.parseInt(issueNumberText.getTextFieldValue().toString()));
-    comic.put(COLUMN_PUBLISHER, publisherText.getTextFieldValue().toString());
+    comic.put(COLUMN_COMIC_NAME, mComicNameText.getTextFieldValue().toString());
+    comic.put(COLUMN_WRITER, mWriterText.getTextFieldValue().toString());
+    comic.put(COLUMN_ISSUE, Integer.parseInt(mIssueNumberText.getTextFieldValue().toString()));
+    comic.put(COLUMN_PUBLISHER, mPublisherText.getTextFieldValue().toString());
 
     comic.saveInBackground();
     comicSavedToast();

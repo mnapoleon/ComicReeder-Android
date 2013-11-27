@@ -28,7 +28,7 @@ public class ComicSearchListActivity extends ListActivity {
     // Show the Up button in the action bar.
     setupActionBar();
 
-    ArrayList<Comic> comicList= getIntent().getParcelableArrayListExtra("comicData");
+    ArrayList<Comic> comicList = getIntent().getParcelableArrayListExtra("comicData");
     if (comicList == null || comicList.size() == 0) {
       searchResultsToast(0);
     }
