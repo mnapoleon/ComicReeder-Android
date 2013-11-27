@@ -17,7 +17,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name=".activity.ComicReederActivity"
+            android:name="com.mike.comicreeder.activity.ComicReederActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -25,8 +25,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-      <activity
-            android:name=".activity.AddComicActivity"
+        <activity
+            android:name="com.mike.comicreeder.activity.AddComicActivity"
             android:label="@string/title_activity_add_comic"
             android:parentActivityName=".activity.ComicReederActivity" >
             <meta-data
@@ -34,7 +34,7 @@
                 android:value=".activity.ComicReederActivity" />
         </activity>
         <activity
-            android:name=".activity.SearchForComicsActivity"
+            android:name="com.mike.comicreeder.activity.SearchForComicsActivity"
             android:label="@string/title_activity_search_from_comics"
             android:parentActivityName=".activity.ComicReederActivity" >
             <meta-data
@@ -42,12 +42,20 @@
                 android:value=".activity.ComicReederActivity" />
         </activity>
         <activity
-            android:name=".activity.ComicSearchListActivity"
+            android:name="com.mike.comicreeder.activity.ComicSearchListActivity"
             android:label="@string/title_activity_comic_search_list"
             android:parentActivityName=".activity.SearchForComicsActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".activity.SearchForComicsActivity" />
+        </activity>
+        <activity
+            android:name="com.mike.comicreeder.activity.CoverImageActivity"
+            android:label="@string/title_activity_cover_image"
+            android:parentActivityName=".activity.ComicSearchListActivity">
+          <meta-data
+            android:name="android.support.PARENT_ACTIVITY"
+            android:value=".activity.ComicSearchListActivity" />
         </activity>
     </application>
 

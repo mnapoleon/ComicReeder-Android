@@ -1,28 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-  <string name="app_name">ComicReeder</string>
-  <string name="action_settings">Settings</string>
-  <string name="hello_world">Hello world!</string>
-  <string name="title_activity_comic_list">Comic List</string>
-  <string name="get_my_comics">Get My Comics</string>
-  <string name="action_search">Search</string>
-  <string name="search_for_comics">Search for Comics</string>
-  <string name="add_comic">Add Comic</string>
-  <string name="title_activity_add_comic">Add Comic</string>
-  <string name="label_publisher">Publisher</string>
-  <string name="label_comic_name">Comic</string>
-  <string name="label_writer">Writer</string>
-  <string name="label_issue_num">Issue #</string>
-  <string name="hint_comic_name">Comic</string>
-  <string name="hint_writer">Writer</string>
-  <string name="hint_issue_num">Issue number</string>
-  <string name="hint_publisher">Publisher</string>
-  <string name="title_activity_search_from_comics">Comics Search</string>
-  <string name="search_criteria">Comic Search Criteria</string>
-  <string name="title_activity_comic_search_list">Comic Search Results</string>
+    <string name="app_name">ComicReeder</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="title_activity_comic_list">Comic List</string>
+    <string name="get_my_comics">Get My Comics</string>
+    <string name="action_search">Search</string>
+    <string name="search_for_comics">Search for Comics</string>
+    <string name="add_comic">Add Comic</string>
+    <string name="title_activity_add_comic">Add Comic</string>
+    <string name="label_publisher">Publisher</string>
+    <string name="label_comic_name">Comic</string>
+    <string name="label_writer">Writer</string>
+    <string name="label_issue_num">Issue #</string>
+    <string name="hint_comic_name">Comic</string>
+    <string name="hint_writer">Writer</string>
+    <string name="hint_issue_num">Issue number</string>
+    <string name="hint_publisher">Publisher</string>
+    <string name="title_activity_search_from_comics">Comics Search</string>
+    <string name="search_criteria">Comic Search Criteria</string>
+    <string name="title_activity_comic_search_list">Comic Search Results</string>
+    <string name="result_comic_name_label">Comic: </string>
+    <string name="result_writer_label">Writer: </string>
+    <string name="result_issue_num_label">Issue# </string>
+    <string name="title_activity_cover_image">CoverImageActivity</string>
 
-  <string name="result_comic_name_label">Comic: </string>
-  <string name="result_writer_label">Writer: </string>
-  <string name="result_issue_num_label">Issue# </string>
 </resources>

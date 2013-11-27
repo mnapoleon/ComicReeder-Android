@@ -2,6 +2,7 @@ package com.mike.comicreeder.activity;
 
 import android.app.ListActivity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -37,12 +38,12 @@ public class ComicSearchListActivity extends ListActivity {
       searchResultsToast(comicList.size());
     }
 
-    ListView lv = getListView();
+    final ListView lv = getListView();
 
     lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
       @Override
       public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        selectComic(view);
+        selectComic(view, (Comic) lv.getItemAtPosition(position));
       }
     });
   }
@@ -95,12 +96,19 @@ public class ComicSearchListActivity extends ListActivity {
     toast.show();
   }
 
-  public void selectComic(View view) {
+  public void selectComic(View view, Comic selectedComic) {
     Context context = getApplicationContext();
-    CharSequence text = "Select a comic";
 
-    int duration = Toast.LENGTH_SHORT;
-    Toast toast = Toast.makeText(context, text, duration);
-    toast.show();
+    if (selectedComic.getCoverImageUrl() != null) {
+      Intent intent = new Intent(ComicSearchListActivity.this, CoverImageActivity.class);
+      intent.putExtra("coverImageUrl", selectedComic.getCoverImageUrl());
+      startActivity(intent);
+    }
+    else {
+      CharSequence text = selectedComic.getComicName();
+      int duration = Toast.LENGTH_SHORT;
+      Toast toast = Toast.makeText(context, text, duration);
+      toast.show();
+    }
   }
 }
