@@ -52,10 +52,18 @@
         <activity
             android:name="com.mike.comicreeder.activity.CoverImageActivity"
             android:label="@string/title_activity_cover_image"
-            android:parentActivityName=".activity.ComicSearchListActivity">
-          <meta-data
-            android:name="android.support.PARENT_ACTIVITY"
-            android:value=".activity.ComicSearchListActivity" />
+            android:parentActivityName=".activity.ComicSearchListActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activity.ComicSearchListActivity" />
+        </activity>
+        <activity
+            android:name="com.mike.comicreeder.activity.RegistrationActivity"
+            android:label="@string/title_activity_registration" >
+        </activity>
+        <activity
+            android:name="com.mike.comicreeder.activity.LoginActivity"
+            android:label="@string/title_activity_login" >
         </activity>
     </application>
 

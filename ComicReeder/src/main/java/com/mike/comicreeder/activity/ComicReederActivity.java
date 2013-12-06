@@ -9,6 +9,7 @@ import android.view.View;
 import com.mike.comicreeder.R;
 import com.parse.Parse;
 import com.parse.ParseAnalytics;
+import com.parse.ParseUser;
 
 public class ComicReederActivity extends Activity {
 
@@ -21,6 +22,14 @@ public class ComicReederActivity extends Activity {
     setContentView(R.layout.activity_main);
 
     initializeParse();
+
+    ParseUser currentUser = ParseUser.getCurrentUser();
+
+    if (currentUser == null) {
+      Intent intent = new Intent(this, LoginActivity.class);
+      startActivity(intent);
+      finish();
+    }
   }
 
   public void addComic(View view) {

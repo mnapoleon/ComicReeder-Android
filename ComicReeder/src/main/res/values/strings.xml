@@ -25,5 +25,12 @@
     <string name="result_writer_label">Writer: </string>
     <string name="result_issue_num_label">Issue# </string>
     <string name="title_activity_cover_image">CoverImageActivity</string>
-
+    <string name="title_activity_registration">Registration</string>
+    <string name="username">User Name:</string>
+    <string name="password">Password:</string>
+    <string name="signup">Sign Up</string>
+    <string name="signin">Sign In</string>
+    <string name="have_account">Already Have An Account? Log In!</string>
+    <string name="title_activity_login">Login</string>
+    <string name="dont_have_an_account_label">Don&amp;apos;t have an account? Register!</string>
 </resources>
