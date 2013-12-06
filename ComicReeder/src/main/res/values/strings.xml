@@ -32,5 +32,6 @@
     <string name="signin">Sign In</string>
     <string name="have_account">Already Have An Account? Log In!</string>
     <string name="title_activity_login">Login</string>
-    <string name="dont_have_an_account_label">Don&amp;apos;t have an account? Register!</string>
+    <string name="dont_have_an_account_label">Don\'t have an account? Register!</string>
+    <string name="action_logout">Logout</string>
 </resources>

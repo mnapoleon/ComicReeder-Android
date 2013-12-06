@@ -14,7 +14,9 @@ import android.widget.Toast;
 import com.mike.comicreeder.R;
 import com.mike.comicreeder.components.FloatingLabelEditText;
 import com.mike.comicreeder.model.ParseComics;
+import com.parse.ParseACL;
 import com.parse.ParseObject;
+import com.parse.ParseUser;
 
 import roboguice.activity.RoboActivity;
 import roboguice.inject.ContentView;
@@ -43,6 +45,8 @@ public class AddComicActivity extends RoboActivity implements ParseComics {
     comic.put(COLUMN_WRITER, mWriterText.getTextFieldValue().toString());
     comic.put(COLUMN_ISSUE, Integer.parseInt(mIssueNumberText.getTextFieldValue().toString()));
     comic.put(COLUMN_PUBLISHER, mPublisherText.getTextFieldValue().toString());
+    comic.setACL(new ParseACL(ParseUser.getCurrentUser()));
+    comic.put(COLUMN_USER, ParseUser.getCurrentUser());
 
     comic.saveInBackground();
     comicSavedToast();

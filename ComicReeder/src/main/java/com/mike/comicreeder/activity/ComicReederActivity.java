@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.app.Activity;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 
 import com.mike.comicreeder.R;
@@ -52,5 +53,17 @@ public class ComicReederActivity extends Activity {
   private void initializeParse() {
     Parse.initialize(this, PARSE_APP_ID, PARSE_CLIENT_ID);
     ParseAnalytics.trackAppOpened(getIntent());
+  }
+
+  public boolean onOptionsItemSelected(MenuItem item) {
+    switch (item.getItemId()) {
+      case R.id.action_logout:
+        ParseUser.logOut();
+        Intent intent = new Intent(this, LoginActivity.class);
+        startActivity(intent);
+        finish();
+        return true;
+    }
+    return false;
   }
 }

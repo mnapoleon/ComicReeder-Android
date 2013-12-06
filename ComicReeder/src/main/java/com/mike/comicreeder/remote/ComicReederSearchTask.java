@@ -5,6 +5,7 @@ import com.mike.comicreeder.model.ParseComics;
 import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
+import com.parse.ParseUser;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,6 +22,7 @@ public class ComicReederSearchTask implements ParseComics {
     for (String key : searchParams.keySet()) {
       query.whereEqualTo(key, searchParams.get(key));
     }
+    query.whereEqualTo(COLUMN_USER, ParseUser.getCurrentUser());
     query.orderByAscending(COLUMN_COMIC_NAME);
     query.addAscendingOrder(COLUMN_ISSUE);
     try {

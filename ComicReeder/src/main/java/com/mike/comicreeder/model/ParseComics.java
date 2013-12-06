@@ -11,4 +11,5 @@ public interface ParseComics {
   static String COLUMN_WRITER = "writer";
   static String COLUMN_SMALL_ICON_URL = "smallIconUrl";
   static String COLUMN_COVER_IMAGE_URL = "coverImageUrl";
+  static String COLUMN_USER = "user";
 }
