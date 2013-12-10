@@ -1,5 +1,7 @@
 package com.mike.comicreeder.activity;
 
+import android.app.Fragment;
+import android.app.FragmentManager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.app.Activity;
@@ -30,6 +32,16 @@ public class ComicReederActivity extends Activity {
       Intent intent = new Intent(this, LoginActivity.class);
       startActivity(intent);
       finish();
+    }
+
+    FragmentManager fm = getFragmentManager();
+    Fragment fragment = fm.findFragmentById(R.id.comicreeder_fragmentcontainer);
+
+    if (fragment == null) {
+      fragment = new ComicReederFragment();
+      fm.beginTransaction()
+          .add(R.id.comicreeder_fragmentcontainer, fragment)
+          .commit();
     }
   }
 
