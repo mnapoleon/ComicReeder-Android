@@ -1,58 +1,38 @@
 package com.mike.comicreeder.activity;
 
-import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.support.v4.app.NavUtils;
 import android.annotation.TargetApi;
 import android.os.Build;
-import android.view.View;
-import android.widget.Toast;
 
 import com.mike.comicreeder.R;
-import com.mike.comicreeder.components.FloatingLabelEditText;
-import com.mike.comicreeder.model.ParseComics;
-import com.parse.ParseACL;
-import com.parse.ParseObject;
-import com.parse.ParseUser;
 
-import roboguice.activity.RoboActivity;
-import roboguice.inject.ContentView;
-import roboguice.inject.InjectView;
+import roboguice.activity.RoboFragmentActivity;
 
-@ContentView(R.layout.activity_add_comic)
-public class AddComicActivity extends RoboActivity implements ParseComics {
-
-  @InjectView(R.id.comicName) FloatingLabelEditText mComicNameText;
-  @InjectView(R.id.writer)    FloatingLabelEditText mWriterText;
-  @InjectView(R.id.issueNum)  FloatingLabelEditText mIssueNumberText;
-  @InjectView(R.id.publisher) FloatingLabelEditText mPublisherText;
+public class AddComicActivity extends RoboFragmentActivity {
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
 
+    setContentView(R.layout.activity_add_comic);
+
     // Show the Up button in the action bar.
     setupActionBar();
-  }
 
-  public void addComic(View view) {
+    FragmentManager fm = getSupportFragmentManager();
+    Fragment fragment = fm.findFragmentById(R.id.addcomic_fragmentcontainer);
 
-    ParseObject comic = new ParseObject(CLASS_COMICS);
-    comic.put(COLUMN_COMIC_NAME, mComicNameText.getTextFieldValue().toString());
-    comic.put(COLUMN_WRITER, mWriterText.getTextFieldValue().toString());
-    comic.put(COLUMN_ISSUE, Integer.parseInt(mIssueNumberText.getTextFieldValue().toString()));
-    comic.put(COLUMN_PUBLISHER, mPublisherText.getTextFieldValue().toString());
-    comic.setACL(new ParseACL(ParseUser.getCurrentUser()));
-    comic.put(COLUMN_USER, ParseUser.getCurrentUser());
-
-    comic.saveInBackground();
-    comicSavedToast();
-
-    Intent intent = new Intent(this, ComicReederActivity.class);
-    startActivity(intent);
+    if (fragment == null) {
+      fragment = new AddComicFragment();
+      fm.beginTransaction()
+          .add(R.id.addcomic_fragmentcontainer, fragment)
+          .commit();
+    }
   }
 
   /**
@@ -72,7 +52,6 @@ public class AddComicActivity extends RoboActivity implements ParseComics {
     return true;
   }
 
-
   @Override
   public boolean onOptionsItemSelected(MenuItem item) {
     switch (item.getItemId()) {
@@ -88,20 +67,6 @@ public class AddComicActivity extends RoboActivity implements ParseComics {
         return true;
     }
     return super.onOptionsItemSelected(item);
-  }
-
-  /**
-   * Used to display a 'toast' message to the user to let
-   * them know the save was saved.
-   */
-  private void comicSavedToast() {
-    Context context = getApplicationContext();
-    CharSequence text = "Comic saved!";
-
-    int duration = Toast.LENGTH_SHORT;
-    Toast toast = Toast.makeText(context, text, duration);
-    toast.show();
-
   }
 
 }

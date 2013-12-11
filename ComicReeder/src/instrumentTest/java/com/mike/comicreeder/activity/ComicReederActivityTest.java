@@ -31,7 +31,7 @@ public class ComicReederActivityTest extends ActivityInstrumentationTestCase2<Co
     comicReederActivity = getActivity();
 
     button1 = (Button) comicReederActivity.findViewById(R.id.search_button);
-    button2 = (Button) comicReederActivity.findViewById(R.id.add_comic_button);
+    button2 = (Button) comicReederActivity.findViewById(R.id.add_button);
   }
 
   @SmallTest

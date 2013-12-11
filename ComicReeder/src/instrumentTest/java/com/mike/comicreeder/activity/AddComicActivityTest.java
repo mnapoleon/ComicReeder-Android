@@ -38,7 +38,7 @@ public class AddComicActivityTest extends ActivityInstrumentationTestCase2<AddCo
     writerName = (FloatingLabelEditText) addComicActivity.findViewById(R.id.writer);
     issueNumber = (FloatingLabelEditText) addComicActivity.findViewById(R.id.issueNum);
     publisherName = (FloatingLabelEditText) addComicActivity.findViewById(R.id.publisher);
-    addButton = (Button) addComicActivity.findViewById(R.id.add_comic_button);
+    addButton = (Button) addComicActivity.findViewById(R.id.add_button);
   }
 
   @SmallTest
