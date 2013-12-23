@@ -1,10 +1,10 @@
 package com.mike.comicreeder.activity;
 
-import android.app.Fragment;
-import android.app.FragmentManager;
 import android.content.Intent;
 import android.os.Bundle;
-import android.app.Activity;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -14,7 +14,7 @@ import com.parse.Parse;
 import com.parse.ParseAnalytics;
 import com.parse.ParseUser;
 
-public class ComicReederActivity extends Activity {
+public class ComicReederActivity extends FragmentActivity {
 
   private static String PARSE_APP_ID = "uKoPYsEPCuxyfZT3M5lyTytsiyZij0RHCSY1VuZ4";
   private static String PARSE_CLIENT_ID = "G1lqqnyoKiwTLOWj50ZWNoRcVIm25jN5IMAgtzxd";
@@ -34,7 +34,7 @@ public class ComicReederActivity extends Activity {
       finish();
     }
 
-    FragmentManager fm = getFragmentManager();
+    FragmentManager fm = getSupportFragmentManager();
     Fragment fragment = fm.findFragmentById(R.id.comicreeder_fragmentcontainer);
 
     if (fragment == null) {
