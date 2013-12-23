@@ -19,8 +19,6 @@ public class AddComicActivity extends RoboFragmentActivity {
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
 
-    setContentView(R.layout.activity_add_comic);
-
     // Show the Up button in the action bar.
     setupActionBar();
 

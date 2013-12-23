@@ -1,57 +1,21 @@
 package com.mike.comicreeder.activity;
 
-import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.support.v4.app.NavUtils;
 import android.annotation.TargetApi;
 import android.os.Build;
-import android.view.View;
 
 import com.mike.comicreeder.R;
-import com.mike.comicreeder.components.FloatingLabelEditText;
-import com.mike.comicreeder.model.Comic;
-import com.mike.comicreeder.model.ParseComics;
-import com.mike.comicreeder.remote.ComicReederSearchTask;
-import com.parse.ParseObject;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import roboguice.activity.RoboActivity;
+import roboguice.activity.RoboFragmentActivity;
 import roboguice.inject.ContentView;
-import roboguice.inject.InjectView;
 
 @ContentView(R.layout.search_comics_activity)
-public class SearchForComicsActivity extends RoboActivity implements ParseComics {
-
-  @InjectView(R.id.comicNameSearch) FloatingLabelEditText mComicName;
-  @InjectView(R.id.publisherSearch) FloatingLabelEditText mPublisherName;
-  @InjectView(R.id.writerSearch)    FloatingLabelEditText mWriterName;
-
-  private class RemoteSearchTask extends AsyncTask<Map<String, String>, Void, List<ParseObject>> {
-
-    private ComicReederSearchTask searchTask = new ComicReederSearchTask();
-
-    @Override
-    protected List<ParseObject> doInBackground(Map<String, String>... params) {
-      return searchTask.searchForComics(params[0]);
-    }
-
-    @Override
-    protected void onPostExecute(List<ParseObject> result) {
-      ArrayList<Comic> comicList = searchTask.getComicList(result);
-
-      Intent intent = new Intent(SearchForComicsActivity.this, ComicSearchListActivity.class);
-      intent.putParcelableArrayListExtra("comicData", comicList);
-
-      startActivity(intent);
-    }
-  }
+public class SearchForComicsActivity extends RoboFragmentActivity {
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +23,16 @@ public class SearchForComicsActivity extends RoboActivity implements ParseComics
 
     // Show the Up button in the action bar.
     setupActionBar();
+
+    FragmentManager fm = getSupportFragmentManager();
+    Fragment fragment = fm.findFragmentById(R.id.searchcomic_fragmentcontainer);
+
+    if (fragment == null) {
+      fragment = new SearchComicsFragment();
+      fm.beginTransaction()
+          .add(R.id.searchcomic_fragmentcontainer, fragment)
+          .commit();
+    }
   }
 
   /**
@@ -96,23 +70,4 @@ public class SearchForComicsActivity extends RoboActivity implements ParseComics
     return super.onOptionsItemSelected(item);
   }
 
-  /**
-   * Sets up the search criteria before executing the remote task.
-   * @param view
-   */
-  public void searchForComics(View view) {
-
-    Map<String, String> searchParams = new HashMap<String, String>();
-
-    if (mComicName.getTextFieldValue() != null && mComicName.getTextFieldValue().toString().trim().length() > 0) {
-      searchParams.put(COLUMN_COMIC_NAME, mComicName.getTextField().getText().toString().trim());
-    }
-    if (mWriterName.getTextFieldValue()!= null && mWriterName.getTextFieldValue().toString().trim().length() > 0) {
-      searchParams.put(COLUMN_WRITER, mWriterName.getTextField().getText().toString().trim());
-    }
-    if (mPublisherName.getTextFieldValue()!= null && mPublisherName.getTextFieldValue().toString().trim().length() > 0) {
-      searchParams.put(COLUMN_PUBLISHER, mPublisherName.getTextField().getText().toString().trim());
-    }
-    new RemoteSearchTask().execute(searchParams);
-  }
 }
