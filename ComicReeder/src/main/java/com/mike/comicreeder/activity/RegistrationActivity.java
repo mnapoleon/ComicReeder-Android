@@ -13,8 +13,10 @@ import com.parse.ParseUser;
 import com.parse.SignUpCallback;
 
 import roboguice.activity.RoboActivity;
+import roboguice.inject.ContentView;
 import roboguice.inject.InjectView;
 
+@ContentView(R.layout.activity_registration)
 public class RegistrationActivity extends RoboActivity {
 
   @InjectView(R.id.register_username) EditText mUsernameField;
@@ -24,9 +26,7 @@ public class RegistrationActivity extends RoboActivity {
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    setContentView(R.layout.activity_registration);
   }
-
 
   @Override
   public boolean onCreateOptionsMenu(Menu menu) {
@@ -38,7 +38,15 @@ public class RegistrationActivity extends RoboActivity {
 
   public void register(final View view) {
     if (mUsernameField.getText().length() == 0 ||
-        mPasswordField.getText().length() == 0) return;
+        mPasswordField.getText().length() == 0) {
+      if (mUsernameField.getText().length() == 0) {
+        mUsernameField.setError(getString(R.string.registration_username_missing));
+      }
+      if (mPasswordField.getText().length() == 0) {
+        mPasswordField.setError(getString(R.string.registration_password_missing));
+      }
+      return;
+    }
 
     view.setEnabled(false);
 
@@ -60,13 +68,13 @@ public class RegistrationActivity extends RoboActivity {
           // to figure out what went wrong
           switch(e.getCode()){
             case ParseException.USERNAME_TAKEN:
-              mErrorField.setText("Sorry, this username has already been taken.");
+              mErrorField.setText(getString(R.string.username_taken));
               break;
             case ParseException.USERNAME_MISSING:
-              mErrorField.setText("Sorry, you must supply a username to register.");
+              mErrorField.setText(getString(R.string.username_missing));
               break;
             case ParseException.PASSWORD_MISSING:
-              mErrorField.setText("Sorry, you must supply a password to register.");
+              mErrorField.setText(getString(R.string.password_missing));
               break;
             default:
               mErrorField.setText(e.getLocalizedMessage());

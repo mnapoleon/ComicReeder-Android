@@ -51,16 +51,16 @@ public class LoginActivity extends RoboActivity {
           // Signup failed. Look at the ParseException to see what happened.
           switch (e.getCode()) {
             case ParseException.USERNAME_TAKEN:
-              mErrorField.setText("Sorry, this username has already been taken.");
+              mErrorField.setText(getString(R.string.username_taken));
               break;
             case ParseException.USERNAME_MISSING:
-              mErrorField.setText("Sorry, you must supply a username to register.");
+              mErrorField.setText(getString(R.string.username_missing));
               break;
             case ParseException.PASSWORD_MISSING:
-              mErrorField.setText("Sorry, you must supply a password to register.");
+              mErrorField.setText(getString(R.string.password_missing));
               break;
             case ParseException.OBJECT_NOT_FOUND:
-              mErrorField.setText("Sorry, those credentials were invalid.");
+              mErrorField.setText(getString(R.string.login_invalid));
               break;
             default:
               mErrorField.setText(e.getLocalizedMessage());
