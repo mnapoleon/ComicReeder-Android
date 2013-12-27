@@ -40,10 +40,10 @@ public class RegistrationActivity extends RoboActivity {
     if (mUsernameField.getText().length() == 0 ||
         mPasswordField.getText().length() == 0) {
       if (mUsernameField.getText().length() == 0) {
-        mUsernameField.setError(getString(R.string.registration_username_missing));
+        mUsernameField.setError(getString(R.string.username_missing));
       }
       if (mPasswordField.getText().length() == 0) {
-        mPasswordField.setError(getString(R.string.registration_password_missing));
+        mPasswordField.setError(getString(R.string.password_missing));
       }
       return;
     }
