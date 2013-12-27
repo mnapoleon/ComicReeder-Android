@@ -3,7 +3,6 @@
 
     <string name="app_name">ComicReeder</string>
     <string name="action_settings">Settings</string>
-    <string name="hello_world">Hello world!</string>
     <string name="title_activity_comic_list">Comic List</string>
     <string name="get_my_comics">Get My Comics</string>
     <string name="action_search">Search</string>
