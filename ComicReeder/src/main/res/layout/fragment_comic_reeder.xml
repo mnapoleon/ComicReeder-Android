@@ -24,4 +24,13 @@
     android:layout_below="@id/search_button"
     android:text="@string/add_comic"
     android:onClick="addComic"/>
+
+  <Button
+    android:id="@+id/comicvine_search_button"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:layout_alignParentLeft="true"
+    android:layout_below="@id/add_button"
+    android:text="@string/searc_comic_vine"
+    android:onClick="searchComicVine"/>
 </RelativeLayout>

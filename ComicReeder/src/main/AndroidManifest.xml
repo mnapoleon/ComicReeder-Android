@@ -28,7 +28,7 @@
         <activity
             android:name="com.mike.comicreeder.activity.AddComicActivity"
             android:label="@string/title_activity_add_comic"
-            android:parentActivityName=".activity.ComicReederActivity" >
+            android:parentActivityName="com.mike.comicreeder.activity.ComicReederActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".activity.ComicReederActivity" />
@@ -36,7 +36,7 @@
         <activity
             android:name="com.mike.comicreeder.activity.SearchForComicsActivity"
             android:label="@string/title_activity_search_from_comics"
-            android:parentActivityName=".activity.ComicReederActivity" >
+            android:parentActivityName="com.mike.comicreeder.activity.ComicReederActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".activity.ComicReederActivity" />
@@ -44,7 +44,7 @@
         <activity
             android:name="com.mike.comicreeder.activity.ComicSearchListActivity"
             android:label="@string/title_activity_comic_search_list"
-            android:parentActivityName=".activity.SearchForComicsActivity" >
+            android:parentActivityName="com.mike.comicreeder.activity.SearchForComicsActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".activity.SearchForComicsActivity" />
@@ -52,7 +52,7 @@
         <activity
             android:name="com.mike.comicreeder.activity.CoverImageActivity"
             android:label="@string/title_activity_cover_image"
-            android:parentActivityName=".activity.ComicSearchListActivity" >
+            android:parentActivityName="com.mike.comicreeder.activity.ComicSearchListActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".activity.ComicSearchListActivity" />
@@ -64,6 +64,10 @@
         <activity
             android:name="com.mike.comicreeder.activity.LoginActivity"
             android:label="@string/title_activity_login" >
+        </activity>
+        <activity
+            android:name="com.mike.comicreeder.activity.ComicVineSearchActivity"
+            android:label="@string/title_activity_comic_vine_search" >
         </activity>
     </application>
 
