@@ -12,14 +12,19 @@ import android.widget.TextView;
 
 import com.mike.comicreeder.R;
 
-import java.io.BufferedInputStream;
-import java.io.BufferedReader;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.ResponseHandler;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.BasicResponseHandler;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+import org.json.JSONTokener;
+
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 
 import roboguice.fragment.RoboFragment;
 import roboguice.inject.ContentView;
@@ -61,66 +66,71 @@ public class ComicVineSearchFragment extends RoboFragment {
   }
 
 
-  private class RemoteComicVineSearchTask extends AsyncTask<Void, Void, String> {
+  private class RemoteComicVineSearchTask extends AsyncTask<Void, Void, List<String>> {
 
     private static final String TAG = "RemoteComicVineSearchTask";
 
     @Override
-    protected String doInBackground(Void... params) {
+    protected List<String> doInBackground(Void... params) {
 
-      String comicVineUrl = "http://api.comicvine.com/volumes/?api_key=0447b47f0d12e229dfef9cdafec888806410e871&filter=name:Morning%20Glories,publisher:Image&sort=name&field_list=id,name,start_year,publisher,count_of_issues,image&format=json&limit=1";
+      String comicVineUrl = "http://www.comicvine.com/api/volumes/?api_key=0447b47f0d12e229dfef9cdafec888806410e871&filter=name:Morning%20Glories,publisher:Image&sort=name&field_list=id,name,start_year,publisher,count_of_issues,image&format=json&limit=2";
 
-      HttpURLConnection urlConnection = null;
-      String result = "";
+      AndroidHttpClient mClient = AndroidHttpClient.newInstance("");
 
+      HttpGet request =  new HttpGet(comicVineUrl);
+      JSONResponseHandler responseHandler = new JSONResponseHandler();
       try {
-        urlConnection = (HttpURLConnection) new URL(comicVineUrl).openConnection();
-        InputStream in = new BufferedInputStream(urlConnection.getInputStream());
-        result = readStream(in);
+        return mClient.execute(request, responseHandler);
       }
-      catch (MalformedURLException e1) {
-        Log.e(TAG, "MalformedException");
+      catch (ClientProtocolException e1) {
+        Log.e(TAG, "ClientProtocolException");
       }
       catch (IOException e2) {
         Log.e(TAG, "IOException");
       }
-      finally {
-        if (null != urlConnection) {
-          urlConnection.disconnect();
-        }
-      }
-      return result;
+      return null;
 
     }
 
     @Override
-    protected void onPostExecute(String s) {
+    protected void onPostExecute(List<String> s) {
       super.onPostExecute(s);
 
-      mComicVineResultTextView.setText(s);
+      mComicVineResultTextView.setText(s.get(0));
     }
 
-    private String readStream(InputStream in) {
-      BufferedReader reader = null;
-      StringBuffer data = new StringBuffer("");
-      try {
-        reader = new BufferedReader(new InputStreamReader(in));
-        String line = "";
-        while ((line = reader.readLine()) != null) {
-          data.append(line);
-        }
-      } catch (IOException e) {
-        Log.e(TAG, "IOException");
-      } finally {
-        if (reader != null) {
-          try {
-            reader.close();
-          } catch (IOException e) {
-            e.printStackTrace();
+    private class JSONResponseHandler implements ResponseHandler<List<String>> {
+
+      private static final String RESULTS = "results";
+      private static final String NAME_TAG = "name";
+      private static final String ISSUE_COUNT = "count_of_issues";
+      private static final String PUBLISHER = "publisher";
+
+      @Override
+      public List<String> handleResponse(HttpResponse response) throws ClientProtocolException, IOException {
+        List<String> result = new ArrayList<String>();
+        String JSONResponse = new BasicResponseHandler().handleResponse(response);
+
+        try {
+          JSONObject responseObject = (JSONObject) new JSONTokener(
+              JSONResponse).nextValue();
+
+          JSONArray results = responseObject.getJSONArray(RESULTS);
+
+          for (int idx = 0; idx < results.length(); idx++) {
+            JSONObject comic = (JSONObject)results.get(idx);
+            JSONObject publisher = (JSONObject)comic.get(PUBLISHER);
+
+            result.add("[Comic name] " + comic.get(NAME_TAG) + " :: " +
+                "[Number of Issues] " + comic.get(ISSUE_COUNT) + " :: " +
+                "[Publisher] " + publisher.get(NAME_TAG));
           }
         }
+        catch (JSONException e1) {
+          e1.printStackTrace();
+        }
+        return result;
       }
-      return data.toString();
     }
   }
 }
