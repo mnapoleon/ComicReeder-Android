@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.loopj.android.image.SmartImageView;
 import com.mike.comicreeder.R;
 
 import org.apache.http.HttpResponse;
@@ -37,7 +38,10 @@ import roboguice.inject.InjectView;
 public class ComicVineSearchFragment extends RoboFragment {
 
   @InjectView(R.id.search_comicvine_button) Button mSearchComicVineButton;
-  @InjectView(R.id.comicvine_result) TextView mComicVineResultTextView;
+  @InjectView(R.id.cv_smallIcon) SmartImageView mSmartImageView;
+  @InjectView(R.id.cv_comic_name) TextView mCVComicName;
+  @InjectView(R.id.cv_issue_num) TextView mIssuNum;
+  @InjectView(R.id.cv_publisher) TextView mPublisher;
 
   @Override
   public void onCreate(Bundle savedInstanceState) {
@@ -66,18 +70,30 @@ public class ComicVineSearchFragment extends RoboFragment {
   }
 
 
-  private class RemoteComicVineSearchTask extends AsyncTask<Void, Void, List<String>> {
+  private class RemoteComicVineSearchTask extends AsyncTask<Void, Void, List<ComicVineVolume>> {
 
     private static final String TAG = "RemoteComicVineSearchTask";
 
     @Override
-    protected List<String> doInBackground(Void... params) {
+    protected List<ComicVineVolume> doInBackground(Void... params) {
 
-      String comicVineUrl = "http://www.comicvine.com/api/volumes/?api_key=0447b47f0d12e229dfef9cdafec888806410e871&filter=name:Morning%20Glories,publisher:Image&sort=name&field_list=id,name,start_year,publisher,count_of_issues,image&format=json&limit=2";
+      String comicVineUrl = "http://www.comicvine.com/api/volumes/?";
+      String apiKey = "api_key=0447b47f0d12e229dfef9cdafec888806410e871";
+      String filterString = "filter=name:Morning%20Glories,publisher:Image";
+      String sortString = "sort=name";
+      String fieldListString = "field_list=id,name,start_year,publisher,count_of_issues,image";
+      String formatString = "format=json";
+      String limitString = "limit=2";
+
+      String completeUrl = comicVineUrl.concat(apiKey).concat("&").concat(filterString).concat("&")
+          .concat(sortString).concat("&").concat(fieldListString).concat("&").concat(formatString)
+          .concat("&").concat(limitString);
+
+      Log.i(TAG, "URL:: " + completeUrl);
 
       AndroidHttpClient mClient = AndroidHttpClient.newInstance("");
 
-      HttpGet request =  new HttpGet(comicVineUrl);
+      HttpGet request =  new HttpGet(completeUrl);
       JSONResponseHandler responseHandler = new JSONResponseHandler();
       try {
         return mClient.execute(request, responseHandler);
@@ -88,27 +104,38 @@ public class ComicVineSearchFragment extends RoboFragment {
       catch (IOException e2) {
         Log.e(TAG, "IOException");
       }
+      finally {
+        mClient.close();
+      }
       return null;
 
     }
 
     @Override
-    protected void onPostExecute(List<String> s) {
+    protected void onPostExecute(List<ComicVineVolume> s) {
       super.onPostExecute(s);
 
-      mComicVineResultTextView.setText(s.get(0));
+      //ComicVineResultTextView.setText(s.get(0));
+      ComicVineVolume comic = s.get(1);
+
+      mCVComicName.setText(comic.comicName);
+      mIssuNum.setText(comic.issueNum);
+      mPublisher.setText(comic.publisher);
+      mSmartImageView.setImageUrl(comic.imageSrc);
     }
 
-    private class JSONResponseHandler implements ResponseHandler<List<String>> {
+    private class JSONResponseHandler implements ResponseHandler<List<ComicVineVolume>> {
 
       private static final String RESULTS = "results";
       private static final String NAME_TAG = "name";
       private static final String ISSUE_COUNT = "count_of_issues";
       private static final String PUBLISHER = "publisher";
+      private static final String IMAGE = "image";
+      private static final String THUMB_URL = "thumb_url";
 
       @Override
-      public List<String> handleResponse(HttpResponse response) throws ClientProtocolException, IOException {
-        List<String> result = new ArrayList<String>();
+      public List<ComicVineVolume> handleResponse(HttpResponse response) throws ClientProtocolException, IOException {
+        List<ComicVineVolume> result = new ArrayList<ComicVineVolume>();
         String JSONResponse = new BasicResponseHandler().handleResponse(response);
 
         try {
@@ -120,10 +147,16 @@ public class ComicVineSearchFragment extends RoboFragment {
           for (int idx = 0; idx < results.length(); idx++) {
             JSONObject comic = (JSONObject)results.get(idx);
             JSONObject publisher = (JSONObject)comic.get(PUBLISHER);
+            JSONObject image = (JSONObject)comic.get(IMAGE);
 
-            result.add("[Comic name] " + comic.get(NAME_TAG) + " :: " +
-                "[Number of Issues] " + comic.get(ISSUE_COUNT) + " :: " +
-                "[Publisher] " + publisher.get(NAME_TAG));
+            String cv_name = comic.getString(NAME_TAG);
+            String cv_issue_count = comic.getString(ISSUE_COUNT);
+            String cv_publisher = publisher.getString(NAME_TAG);
+            String cv_image_url = image.getString(THUMB_URL);
+
+            ComicVineVolume cvv =  new ComicVineVolume(cv_name, cv_issue_count, cv_publisher, cv_image_url);
+
+            result.add(cvv);
           }
         }
         catch (JSONException e1) {
@@ -131,6 +164,20 @@ public class ComicVineSearchFragment extends RoboFragment {
         }
         return result;
       }
+    }
+  }
+
+  private class ComicVineVolume {
+    public String comicName;
+    public String issueNum;
+    public String publisher;
+    public String imageSrc;
+
+    ComicVineVolume(String comicName, String issueNum, String publisher, String imageSrc) {
+      this.comicName = comicName;
+      this.issueNum = issueNum;
+      this.publisher = publisher;
+      this.imageSrc = imageSrc;
     }
   }
 }
